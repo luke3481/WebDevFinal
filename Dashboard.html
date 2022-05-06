@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel=stylesheet href="Dashboard.css" TYPE="text/css">
+    <script src="Dashboard.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="sidebar">
+        <div id="sidebar_button">
+          <button type="button" id="btnstyle1" onclick=""><img id="home" src="https://instructure-uploads.s3.amazonaws.com/account_23490000000000001/attachments/94286/shield.cmyk.reversed.png?AWSAccessKeyId=AKIAJFNFXH2V2O7RPCAA&Expires=1941800704&Signature=UMFgyK223WwtXIfmSeqYTDFxDNY%3D&response-cache-control=Cache-Control%3Amax-age%3D473364000.0%2C%20public&response-expires=473364000.0"></button>
+          <button type="button" id="btnstyle2" onclick=""><img src="account.jpg">Account</button>
+          <button type="button" id="btnstyle2" onclick=""><img src="Dashboard.png">Dashboard</button>
+          <button type="button" id="btnstyle2" onclick="openNav()"><img src="courses.png">Courses</button>
+          <div id="courses_sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <h3>Courses</h3>
+            <a href="">Course1</a>
+            <a href="">Course2</a>
+            <a href="">Course3</a>
+          </div>
+          <button type="button" id="btnstyle2" onclick=""><img src="settings.png">Settings</button>
+          <button type="button" id="btnstyle2" onclick=""><img src="logout.png">Logout</button>
+        </div>
+      </div>
+      <div id="classes">
+        <div class="class"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
