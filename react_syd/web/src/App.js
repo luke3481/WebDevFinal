@@ -1,5 +1,6 @@
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
+import Assignments from "./components/Assignments";
 
 
 
@@ -29,47 +30,12 @@ function App() {
 
               </div>
 
-            <div id="assignments">
-              <div className="assignments_logo">
-                <img src="uchicago.png"/>
-              </div>
-              <div className="todo">
-                <div className="assignment_title">
-                  <p>To Do</p>
-                  <hr/>
-                </div>
-                <ul>
-                  <li>Assignment 1</li>
-                  <li>Assignment 2</li>
-                  <li>Assignment 3</li>
-                </ul>
-              </div>
-              <div className="upcoming">
-                <div className="assignment_title">
-                  <p>Upcoming</p>
-                  <hr/>
-                </div>
-                <ul>
-                  <li>Assignment 1</li>
-                  <li>Assignment 2</li>
-                  <li>Assignment 3</li>
-                </ul>
-              </div>
-              <div className="past">
-                <div className="assignment_title">
-                  <p>Past</p>
-                  <hr/>
-                </div>
-                <ul>
-                  <li>Assignment 1</li>
-                  <li>Assignment 2</li>
-                  <li>Assignment 3</li>
-                </ul>
-          </div>
-
+          
+          <Assignments Ass1={'assignment1'}/>
+          <Assignments Ass2={'assignment1'}/>
+          <Assignments Ass3={'assignment1'}/>
         </div>
       </div>
-    </div>
   );
 }
 
