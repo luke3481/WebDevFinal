@@ -4,11 +4,13 @@
 function SideBar(props) {
     
     const openNav = () => {
-        console.log("openNav");
+        document.getElementById("courses_sidenav").style.width = "250px";
       }
-      const closeNav = () => {
-        console.log("openNav");
-      }
+    
+    const closeNav = () => {
+        console.log('hey')
+        //document.getElementById("courses_sidenav").style.width = "0";
+    }
 
 
     return(
