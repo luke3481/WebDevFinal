@@ -8,8 +8,7 @@ function SideBar(props) {
       }
     
     const closeNav = () => {
-        console.log('hey')
-        //document.getElementById("courses_sidenav").style.width = "0";
+        // document.getElementById("courses_sidenav").style.width = "0px";
     }
 
 
