@@ -24,9 +24,7 @@ function App() {
             </div>
 
           
-          <Assignments Ass1={'assignment1'}/>
-          <Assignments Ass2={'assignment2'}/>
-          <Assignments Ass3={'assignment3'}/>
+          <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'}/>
         </div>
       </div>
   );
