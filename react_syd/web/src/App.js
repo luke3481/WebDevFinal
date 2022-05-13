@@ -8,24 +8,29 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            main_menu: "Course",
-            sub_menu: 0, 
-            course_names: ["Course 1", "Course 2", "Course 3"]
+            main_menu: "home",
+            sub_menu: "create_c", 
+            course_names: ["Course 1", "Course 2", "Course 3"],
+            announcements: [
+                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."],
+                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."],
+                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."]
+            ],
+            announcement_d: ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."]
         };
         this.mm_handler = this.mm_handler.bind(this);
     }
     
-    mm_handler() {
+    mm_handler(j) {
         this.setState({
-            main_menu: "Course"
+            main_menu: j
         });
     }
     
-    sm_handler() {
+    sm_handler(i) {
         this.setState({
-            sub_menu: 1
+            sub_menu: i
         });
-        console.log(this.state);
     }
     
     openNav() {
@@ -37,7 +42,7 @@ class App extends React.Component {
     }
     
     render() {
-        if (this.state.main_menu == "Home") {
+        if (this.state.main_menu == "home") {
             return (
             <div className="App">
                 <div className="container">
@@ -55,22 +60,23 @@ class App extends React.Component {
                     <Assignments Ass3={'assignment1'}/>
                   </div>
                 </div> 
-              </div>
+              </div> 
             );
-        } else if (this.state.main_menu == "Course") {
+        } else if (this.state.main_menu == "course") {
             return (
             <div className="App">
                 <div className="container">
-                    <SideBar action = {this.handler} state = {this.state} />
+                    <SideBar action = {this.mm_handler} state = {this.state} />
                     <div id="nestedcontainer">
                         <div id="sidebar2">
                             <p>Courses</p>
-                            <a href="">Announcements</a>
+                            <a href="" onClick={() => this.sm_handler("announcement")}>Announcements</a>
                             <a href="">Assignments</a>
                             <a href="">Grades</a><br/><br/><br/>
-                            <button type="button" id="btnstyle3" onClick={() => this.sm_handler()}>Create Course</button>
+                            <button type="button" id="btnstyle3" onClick={() => this.sm_handler("create_c")}>Create Course</button><br/><br/>
+                            <button type="button" id="btnstyle3" onClick={() => this.sm_handler("create_a")}>Create Announcement</button>
                         </div>
-                        <Courses state = {this.state} />
+                        <Courses action = {this.sm_handler} state2 = {this.state} />
                     </div>
                         <Assignments Ass1={'assignment1'}/>
                         <Assignments Ass2={'assignment1'}/>

@@ -14,6 +14,7 @@ body {
 
 /* Define the sub grid */
 #nestedcontainer {
+  grid-column: 2;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-gap: 1em;
@@ -214,6 +215,53 @@ a {
 
 #create_course p {
   font-size: 20px;
+}
+
+/* CSS for Announcements section */
+
+#announcements {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  padding-top: 148px;
+}
+
+#top_border {
+  border-top: 1px solid #808080;
+}
+
+/* CSS for Announcement section */
+
+#announcement {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 80px;
+  border-bottom: 1px solid #808080;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#announcement a {
+  padding-bottom: 18px;
+  color: black;
+}
+
+/* CSS for Announcement Detail section */
+
+#announcement_ds {
+  display: grid;
+  grid-template-rows: fit-content(800px);
+  border: 1px solid grey;
+  margin-top: 150px;
+  margin-bottom: 200px;
+  padding-left: 15px;
+}
+
+/* CSS for Create Announcement section */
+
+#create_announcement {
+  position: sticky;
+  padding-top: 148px;
 }
 
 /* CSS for Assignments section */

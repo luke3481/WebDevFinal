@@ -12,7 +12,7 @@ class SideBar extends React.Component {
     
     renderCourse(i) {
         return (
-            <a href="" onClick={this.props.action}>
+            <a href="" onClick={() => this.props.action("course")}>
                 {this.props.state.course_names[i]}
             </a>
         );
