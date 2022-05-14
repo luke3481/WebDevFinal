@@ -1,4 +1,10 @@
 import React from "react";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link
+} from 'react-router-dom';
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";

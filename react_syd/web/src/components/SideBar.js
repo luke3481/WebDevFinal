@@ -8,7 +8,8 @@ class SideBar extends React.Component {
     closeNav() {
         console.log('hey')
         //document.getElementById("courses_sidenav").style.width = "0";
-    
+    }
+
     renderCourse(i) {
         return (
             <a href="" onClick={() => this.props.action("course")}>
