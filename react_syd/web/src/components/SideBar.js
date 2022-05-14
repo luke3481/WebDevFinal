@@ -4,11 +4,10 @@ class SideBar extends React.Component {
     openNav() {
         document.getElementById("courses_sidenav").style.width = "250px";
       }
-    
+      
     closeNav() {
         console.log('hey')
         //document.getElementById("courses_sidenav").style.width = "0";
-    }
     
     renderCourse(i) {
         return (

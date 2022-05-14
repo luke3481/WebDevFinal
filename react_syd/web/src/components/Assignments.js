@@ -3,7 +3,7 @@ function Assignments(props) {
     return (
     <div id="assignments">
         <div className="assignments_logo">
-        <img src="uchicago.png"/>
+        <img src={require("../imgs/uchicago.png")} alt=''/>
         </div>
         <div className="todo">
         <div className="assignment_title">
@@ -22,9 +22,9 @@ function Assignments(props) {
             <hr/>
         </div>
         <ul>
-            <li>Assignment 1</li>
-            <li>Assignment 2</li>
-            <li>Assignment 3</li>
+            <li>{props.Ass1}</li>
+            <li>{props.Ass2}</li>
+            <li>{props.Ass3}</li>
         </ul>
         </div>
         <div className="past">
@@ -33,9 +33,9 @@ function Assignments(props) {
             <hr/>
         </div>
         <ul>
-            <li>Assignment 1</li>
-            <li>Assignment 2</li>
-            <li>Assignment 3</li>
+            <li>{props.Ass1}</li>
+            <li>{props.Ass2}</li>
+            <li>{props.Ass3}</li>
         </ul>
         </div>
 </div>
