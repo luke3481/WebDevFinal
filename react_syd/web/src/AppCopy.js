@@ -42,10 +42,8 @@ function AppCopy() {
                     <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>
                     <ClassTile name={"MPCS 55001 1 (Spring 2022) Algorithms"} color={"darkcyan"}/>
                     <ClassTile name={"MPCS 55009 1 (Spring 2022) WebDev"} color={"black"}/>
-                    <Assignments Ass1={'assignment1'}/>
-                    <Assignments Ass2={'assignment1'}/>
-                    <Assignments Ass3={'assignment1'}/>
                 </div>
+                <Assignments Ass1={'assignment1'} Ass2={'Assignment2'} Ass3={'assignment3'}/>
             </div>
         </div> 
     );

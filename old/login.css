@@ -9,7 +9,7 @@ button {
 /* Design for desktop and tablets */
 @media only screen and (min-width: 768px)
 {
-    .container {
+    .logincontainer {
         background-image: url('loginbackground.jpg');
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
         font-size: 15px;
@@ -23,7 +23,7 @@ button {
         height: 100vh;
     }
 
-    #header {
+    #loginheader {
         grid-row: 1;
         grid-column: 2;
         padding-top: 30px;
@@ -32,7 +32,7 @@ button {
         background: #800000;
     }
     
-    #main {
+    #loginmain {
         grid-column: 2;
         grid-row: 2;
         background-color: black;
@@ -42,11 +42,11 @@ button {
         opacity: 0.8;
     }
 
-    #main form .input-wrapper {
+    #loginmain form .input-wrapper {
         margin-top: 30px;
     }
     
-    #main form input[type="text"], #main form input[type="password"] {
+    #loginmain form input[type="text"], #main form input[type="password"] {
         position: relative;
         text-indent: 10px;
         width: 100%;
@@ -81,7 +81,7 @@ button {
 
 /* Design for phones */
 @media only screen and (max-width: 767px) {
-    .container {
+    .logincontainer {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
         font-size: 18px;
         color: #fff;
@@ -94,7 +94,7 @@ button {
         align-content: stretch;
     }
 
-    #header {
+    #loginheader {
         padding-top: 30px;
         padding-right: 10%;
         padding-left: 10%;
@@ -102,7 +102,7 @@ button {
         background: #800000;
     }
     
-    #main {
+    #loginmain {
         background-color: black;
         padding-top: 30px;
         padding-right: 10%;
@@ -110,11 +110,11 @@ button {
         opacity: 0.8;
     }
 
-    #main form .input-wrapper {
+    #loginmain form .input-wrapper {
         margin-bottom: 30px;
     }
     
-    #main form input[type="text"], #main form input[type="password"] {
+    #loginmain form input[type="text"], #main form input[type="password"] {
         position: relative;
         text-indent: 10px;
         width: 100%;
