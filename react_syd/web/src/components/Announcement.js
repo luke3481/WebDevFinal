@@ -1,3 +1,6 @@
+
+
+
 function Announcement(props) {
     var index = Number(props.index);
     
