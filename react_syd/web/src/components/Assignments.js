@@ -3,7 +3,7 @@ function Assignments(props) {
     return (
     <div id="assignments">
         <div className="assignments_logo">
-        <img src={require("../imgs/uchicago.png")} alt=''/>
+            <img src={require("../imgs/uchicago.png")} alt=''/>
         </div>
         <div className="todo">
         <div className="assignment_title">
