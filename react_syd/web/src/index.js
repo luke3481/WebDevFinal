@@ -10,7 +10,8 @@ import {
   Route,
 } from "react-router-dom";
 import Invoices from "./routes/invoices";
-import Courses from "./routes/CoursesCopy"
+import CoursesCreate from "./routes/CoursesCreate"
+import CoursesAnnouncement from "./routes/CoursesAnnouncement"
 
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,7 +28,8 @@ root.render(
     <Routes>
       <Route path="/" element={<AppCopy />} />
       <Route path="invoices" element={<Invoices />} />
-      <Route path="CoursesCopy" element={<Courses />} />
+      <Route path="CoursesCreate" element={<CoursesCreate />} />
+      <Route path="CoursesAnnouncement" element={<CoursesAnnouncement />} />
     </Routes>
   </BrowserRouter>
 );

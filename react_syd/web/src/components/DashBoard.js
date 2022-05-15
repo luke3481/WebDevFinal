@@ -24,6 +24,8 @@ function DashBoard(props) {
                     <Link to="/invoices">Invoices</Link>
                     <br/>
                     <Link to="/CoursesCopy">CoursesCopy</Link>
+                    <br/>
+                    <Link to="/CoursesAnnouncement">CoursesAnnouncement</Link>
                 </div>
                 <ClassTile name={"BUSN 36109 81,02,01 Advanced Decision Models with Python"} color={"rgb(152, 108, 22)"}/>
                 <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>

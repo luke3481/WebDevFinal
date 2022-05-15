@@ -1,6 +1,5 @@
-import Announcement from "../components/Announcement";
 
-function Courses(props) {
+function CoursesCreate(props) {
     return (
         <div id="create_course">
             <form>
@@ -19,7 +18,7 @@ function Courses(props) {
                 <input type="submit" />
             </form>
         </div>
-    )
+    );
 }
 
-export default Courses;
+export default CoursesCreate;

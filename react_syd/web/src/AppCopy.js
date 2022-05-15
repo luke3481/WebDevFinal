@@ -6,7 +6,10 @@ import {
 	Route,
 	Link,
 } from 'react-router-dom';
-import DashBoard from "./components/DashBoard";
+import ClassTile from "./components/ClassTile";
+import SideBarCopy from "./components/SideBarCopy";
+import Assignments from "./components/Assignments";
+import Courses from "./components/Courses";
 
 
 function AppCopy() {
@@ -24,7 +27,26 @@ function AppCopy() {
     
     return (
         <div className="App">
-            <DashBoard courses={courses}/>
+            <div className="container">
+                <SideBarCopy courses={courses}/>
+                <div id="classes">
+                    <div className="class">
+                        <p>Dashboard</p>
+                        <Link to="/invoices">Invoices</Link>
+                        <br/>
+                        <Link to="/CoursesCopy">CoursesCopy</Link>
+                        <br/>
+                        <Link to={{pathname:"/CoursesAnnouncement", search:'trying this', state:"trying"}}>CoursesAnnouncement</Link>
+                    </div>
+                    <ClassTile name={"BUSN 36109 81,02,01 Advanced Decision Models with Python"} color={"rgb(152, 108, 22)"}/>
+                    <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>
+                    <ClassTile name={"MPCS 55001 1 (Spring 2022) Algorithms"} color={"darkcyan"}/>
+                    <ClassTile name={"MPCS 55009 1 (Spring 2022) WebDev"} color={"black"}/>
+                    <Assignments Ass1={'assignment1'}/>
+                    <Assignments Ass2={'assignment1'}/>
+                    <Assignments Ass3={'assignment1'}/>
+                </div>
+            </div>
         </div> 
     );
 } 
