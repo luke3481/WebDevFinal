@@ -23,7 +23,7 @@ button {
         height: 100vh;
     }
 
-    #loginheader {
+    #header {
         grid-row: 1;
         grid-column: 2;
         padding-top: 30px;
@@ -32,7 +32,7 @@ button {
         background: #800000;
     }
     
-    #loginmain {
+    #main {
         grid-column: 2;
         grid-row: 2;
         background-color: black;
@@ -42,11 +42,11 @@ button {
         opacity: 0.8;
     }
 
-    #loginmain form .input-wrapper {
+    #main form .input-wrapper {
         margin-top: 30px;
     }
     
-    #loginmain form input[type="text"], #main form input[type="password"] {
+    #main form input[type="text"], #main form input[type="password"] {
         position: relative;
         text-indent: 10px;
         width: 100%;
@@ -68,6 +68,17 @@ button {
         border: none;
         text-decoration: underline;
     }
+
+    
+    #signup {
+        display: block;
+        font-size: .75em;
+        margin: 0 auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
     
     #submit {
         width: 50%;
@@ -81,7 +92,7 @@ button {
 
 /* Design for phones */
 @media only screen and (max-width: 767px) {
-    .logincontainer {
+    .container {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
         font-size: 18px;
         color: #fff;
@@ -94,7 +105,7 @@ button {
         align-content: stretch;
     }
 
-    #loginheader {
+    #header {
         padding-top: 30px;
         padding-right: 10%;
         padding-left: 10%;
@@ -102,7 +113,7 @@ button {
         background: #800000;
     }
     
-    #loginmain {
+    #main {
         background-color: black;
         padding-top: 30px;
         padding-right: 10%;
@@ -110,11 +121,11 @@ button {
         opacity: 0.8;
     }
 
-    #loginmain form .input-wrapper {
+    #main form .input-wrapper {
         margin-bottom: 30px;
     }
     
-    #loginmain form input[type="text"], #main form input[type="password"] {
+    #main form input[type="text"], #main form input[type="password"] {
         position: relative;
         text-indent: 10px;
         width: 100%;
@@ -128,6 +139,16 @@ button {
     }
     
     #forgot {
+        display: block;
+        font-size: .75em;
+        margin: 0 auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
+
+    #signup {
         display: block;
         font-size: .75em;
         margin: 0 auto 15px auto;

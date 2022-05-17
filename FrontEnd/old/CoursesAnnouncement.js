@@ -1,4 +1,4 @@
-import AnnouncementCopy from "../components/AnnouncementCopy";
+import AnnouncementCopy from "../../project/web/src/components/AnnouncementCopy";
 import { useLocation } from 'react-router-dom';
 
 function CoursesAnnouncement(props) {

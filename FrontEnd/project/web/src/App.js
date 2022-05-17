@@ -31,6 +31,7 @@ function AppCopy() {
                 <div id="classes">
                     <div className="class">
                         <p>Dashboard</p>
+                        <hr></hr>
                         <Link to="/invoices">Invoices</Link>
                         <br/>
                     </div>
@@ -39,7 +40,7 @@ function AppCopy() {
                     <ClassTile name={"MPCS 55001 1 (Spring 2022) Algorithms"} color={"darkcyan"}/>
                     <ClassTile name={"MPCS 55009 1 (Spring 2022) WebDev"} color={"black"}/>
                 </div>
-                <Assignments Ass1={'assignment1'} Ass2={'Assignment2'} Ass3={'assignment3'}/>
+                <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'}/>
             </div>
         </div> 
     );

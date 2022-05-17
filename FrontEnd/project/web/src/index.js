@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import ClassTile from './components/ClassTile';
 import {
@@ -9,7 +8,8 @@ import {
   Route,
 } from "react-router-dom";
 import Invoices from "./routes/invoices";
-import LogIn from "./routes/LogIn";
+import LogIn from "./routes/login";
+import './index.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

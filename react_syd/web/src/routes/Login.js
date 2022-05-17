@@ -1,13 +1,19 @@
-import './login.css';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from 'react-router-dom';
+
 
 function LogIn(props) {
     
     return(
         <div class="logincontainer">
-            <div id="header">
+            <div id="loginheader">
                 <h1><b>The University of Chicago</b></h1>
             </div>
-            <div id="main">
+            <div id="loginmain">
                 <h2>Log in to Your UChicago Account</h2>
                 <form action="" method="post" id="login">
                     <div id="alert" aria-atomic="true" role="alert"></div>
@@ -19,7 +25,6 @@ function LogIn(props) {
                     </div>
                     <div class="submit-buttons">
                         <button type="submit" id="forgot" name="forgot" class="forgot">Forgot your password?</button>
-                        <button type="submit" id="signup" name="signup" class="signup">New User</button>
                         <button type="submit" id="submit" name="submit" class="submit">LOG IN</button>
                     </div>
                 </form>
@@ -27,5 +32,3 @@ function LogIn(props) {
         </div>
     );
 }
-
-export default LogIn;
