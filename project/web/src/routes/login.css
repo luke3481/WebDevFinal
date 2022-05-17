@@ -10,7 +10,7 @@ button {
 @media only screen and (min-width: 768px)
 {
     .logincontainer {
-        background-image: url('loginbackground.jpg');
+        background-image: url('../imgs/loginbackground.jpg');
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
         font-size: 15px;
         color: #fff;

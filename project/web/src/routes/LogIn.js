@@ -1,5 +1,4 @@
-
-
+import './login.css';
 
 function LogIn(props) {
     
@@ -27,3 +26,5 @@ function LogIn(props) {
         </div>
     );
 }
+
+export default LogIn;

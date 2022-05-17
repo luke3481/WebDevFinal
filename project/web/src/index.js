@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import AppCopy  from './AppCopy';
 import ClassTile from './components/ClassTile';
 import {
   BrowserRouter,
@@ -10,26 +9,16 @@ import {
   Route,
 } from "react-router-dom";
 import Invoices from "./routes/invoices";
-import CoursesCreate from "./routes/CoursesCreate"
-import CoursesAnnouncement from "./routes/CoursesAnnouncement"
+import LogIn from "./routes/LogIn";
 
-/*
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<AppCopy />} />
+      <Route path="/" element={<App />} />
       <Route path="invoices" element={<Invoices />} />
-      <Route path="CoursesCreate" element={<CoursesCreate />} />
-      <Route path="CoursesAnnouncement" element={<CoursesAnnouncement />} />
+      <Route path="Login" element={<LogIn />} />
     </Routes>
   </BrowserRouter>
 );

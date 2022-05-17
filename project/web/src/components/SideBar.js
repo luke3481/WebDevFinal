@@ -1,6 +1,11 @@
 import React from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
- 
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from 'react-router-dom';
 
 
 
@@ -17,7 +22,7 @@ function SideBarCopy(props) {
                 <button type="button" id="btnstyle2" ><img src={require("../imgs/dashboard.png")}/>Dashboard</button>
                 <SideCoursesMenu width={"0%"} courses={props.courses}/>
                 <button type="button" id="btnstyle2" ><img src={require("../imgs/settings.png")}/>Settings</button>
-                <button type="button" id="btnstyle2" ><img src={require("../imgs/logout.png")}/>Logout</button>
+                <button type="button" id="btnstyle2"><Link to= "/LogIn"><img src={require("../imgs/logout.png")}/></Link>Logout</button>
             </div>
         </div>
     );

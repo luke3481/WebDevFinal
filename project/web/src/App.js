@@ -7,9 +7,8 @@ import {
 	Link,
 } from 'react-router-dom';
 import ClassTile from "./components/ClassTile";
-import SideBarCopy from "./components/SideBarCopy";
+import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
-import Courses from "./components/Courses";
 
 
 function AppCopy() {
@@ -28,15 +27,12 @@ function AppCopy() {
     return (
         <div className="App">
             <div className="container">
-                <SideBarCopy courses={courses}/>
+                <SideBar courses={courses}/>
                 <div id="classes">
                     <div className="class">
                         <p>Dashboard</p>
                         <Link to="/invoices">Invoices</Link>
                         <br/>
-                        <Link to="/CoursesCopy">CoursesCopy</Link>
-                        <br/>
-                        <Link to={{pathname:"/CoursesAnnouncement", search:'trying this', state:"trying"}}>CoursesAnnouncement</Link>
                     </div>
                     <ClassTile name={"BUSN 36109 81,02,01 Advanced Decision Models with Python"} color={"rgb(152, 108, 22)"}/>
                     <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>
