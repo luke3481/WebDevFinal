@@ -9,8 +9,9 @@ router.get('/', (req, res) => {
     res.send('Luke Birch')
   })
 
+const users = [ { name: "Luke Birch "}, { name: "Sally "}]
 router.post('/', (req, res) => {
-    const isValid = false
+    const isValid = true
     if (isValid) {
         users.push({ firstName: req.body.firstName })
         res.redirect(`/users/${users.length - 1}`)
@@ -38,9 +39,10 @@ router
         res.send(`Delete with ID ${req.params.id}`)
     })
 
-const users = [ { name: "Luke Birch "}, { name: "Sally "}]
 router.param("id", (req, res, next, id) => {
+    console.log(req)
     req.user = users[id]
+    console.log(req.user)
     next()
 })
 
