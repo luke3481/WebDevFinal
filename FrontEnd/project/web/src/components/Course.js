@@ -7,6 +7,8 @@ import Announcements from "./Announcements";
 import AnnouncementDetails from "./AnnouncementDetails";
 import CreateAnnouncement from "./CreateAnnouncement";
 import CourseHome from "./CourseHome";
+import Grades from "./Grades";
+import Assignments2 from "./Assignments2";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -35,6 +37,8 @@ function Course(props) {
                 <Route path="/AnnouncementDetails" element={<AnnouncementDetails />} />
                 <Route path="/CreateAnnouncement" element={<CreateAnnouncement />} />
                 <Route path="/CreateCourse" element={<CreateCourse />} />
+                <Route path="/Grades" element={<Grades />} />
+                <Route path="/Assignments" element={<Assignments2 />} />
             </Routes>
         </div>
     );
