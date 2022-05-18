@@ -12,7 +12,7 @@ import {
  
 
 
-function AnnouncementD(props) {  
+function AnnouncementDetails(props) {  
 
     return(
         <div id="announcement_ds">
@@ -24,4 +24,4 @@ function AnnouncementD(props) {
 
 
 
-export default AnnouncementD;
+export default AnnouncementDetails;

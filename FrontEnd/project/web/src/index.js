@@ -7,7 +7,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Invoices from "./routes/invoices";
 import LogIn from "./routes/LogIn";
 import './index.css';
 

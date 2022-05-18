@@ -4,8 +4,9 @@ import SideAccountMenu from "./SideAccountMenu";
 import ClassTile from "./ClassTile";
 import CreateCourse from "./CreateCourse";
 import Announcements from "./Announcements";
-import AnnouncementD from "./AnnouncementD";
-import CreateA from "./CreateA";
+import AnnouncementDetails from "./AnnouncementDetails";
+import CreateAnnouncement from "./CreateAnnouncement";
+import CourseHome from "./CourseHome";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -22,17 +23,18 @@ function Course(props) {
         <div id="nestedcontainer">
             <div id="sidebar2">
                 <p>Courses</p>
-                <a href="">Announcements</a>
-                <a href="">Assignments</a>
-                <a href="">Grades</a><br/><br/><br/>
-                <button type="button" id="btnstyle3">Create Course</button><br/><br/>
-                <button type="button" id="btnstyle3">Create Announcement</button>
+                <Link to="/Course/Announcements">Announcements</Link>
+                <Link to="/Course/Assignments">Assignments</Link>
+                <Link to="/Course/Grades">Grades</Link><br/><br/><br/>
+                <Link to="/Course/CreateCourse"><button type="button" id="btnstyle3">Create Course</button></Link>
+                <Link to="/Course/CreateAnnouncement"><button type="button" id="btnstyle3">Create Announcement</button></Link>
             </div>
             <Routes>
-                <Route path="/" element={<CreateCourse />} />
+                <Route path="/" element={<CourseHome />} />
                 <Route path="/Announcements" element={<Announcements />} />
-                <Route path="/AnnouncementDetails" element={<AnnouncementD />} />
-                <Route path="/CreateAnnouncement" element={<CreateA />} />
+                <Route path="/AnnouncementDetails" element={<AnnouncementDetails />} />
+                <Route path="/CreateAnnouncement" element={<CreateAnnouncement />} />
+                <Route path="/CreateCourse" element={<CreateCourse />} />
             </Routes>
         </div>
     );

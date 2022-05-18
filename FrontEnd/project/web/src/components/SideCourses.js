@@ -1,7 +1,12 @@
 
 import React from "react";
 import {useState} from "react";
-
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from 'react-router-dom';
 
 
 
@@ -9,9 +14,7 @@ function SideCourses(props) {
 
     return(
         <div>
-            <a href="" onClick={() => {console.log('need to change to this link')}}>
-                {props.course_name}
-            </a>
+            <Link to ="/Course">{props.course_name}</Link>
         </div>   
     );
 }

@@ -11,8 +11,6 @@ import SideBarCopy from "./SideBarCopy";
 import Assignments from "./Assignments";
 import Courses from "./Courses";
 
-
-
 function DashBoard(props) {
 
     return(
@@ -21,9 +19,9 @@ function DashBoard(props) {
             <div id="classes">
                 <div className="class">
                     <p>Dashboard</p>
-                    <Link to="/invoices">Invoices</Link>
+                    <Link to="/Invoices">Invoices</Link>
                     <br/>
-                    <Link to="/CoursesCopy">CoursesCopy</Link>
+                    <Link to="/Courses">Course</Link>
                     <br/>
                     <Link to="/CoursesAnnouncement">CoursesAnnouncement</Link>
                 </div>
