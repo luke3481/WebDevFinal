@@ -9,6 +9,8 @@ import {
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
+import Home from "./components/Home";
+import Course from "./components/Course";
 
 
 function AppCopy() {
@@ -28,18 +30,10 @@ function AppCopy() {
         <div className="App">
             <div className="container">
                 <SideBar courses={courses}/>
-                <div id="classes">
-                    <div className="class">
-                        <p>Dashboard</p>
-                        <hr></hr>
-                        <Link to="/invoices">Invoices</Link>
-                        <br/>
-                    </div>
-                    <ClassTile name={"BUSN 36109 81,02,01 Advanced Decision Models with Python"} color={"rgb(152, 108, 22)"}/>
-                    <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>
-                    <ClassTile name={"MPCS 55001 1 (Spring 2022) Algorithms"} color={"darkcyan"}/>
-                    <ClassTile name={"MPCS 55009 1 (Spring 2022) WebDev"} color={"black"}/>
-                </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/Course/*" element={<Course />} />
+                </Routes>
                 <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'}/>
             </div>
         </div> 

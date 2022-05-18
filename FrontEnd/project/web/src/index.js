@@ -8,18 +8,10 @@ import {
   Route,
 } from "react-router-dom";
 import Invoices from "./routes/invoices";
-import LogIn from "./routes/login";
+import LogIn from "./routes/LogIn";
 import './index.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="invoices" element={<Invoices />} />
-      <Route path="Login" element={<LogIn />} />
-    </Routes>
-  </BrowserRouter>
-);
+root.render(<BrowserRouter><App /></BrowserRouter>);
 
