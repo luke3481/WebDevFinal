@@ -1,16 +1,13 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 
-app.use(express.static("public"))
-app.use(express.urlencoded( { extended: true }))
-app.use(express.json())
+app.use(cors());
 
-app.set('view engine', 'ejs')
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
 
-const userRouter = require('./routes/users')
-const postRouter = require('./routes/posts')
-
-app.use('/users', userRouter)
-app.use('/posts', postRouter)
-
-app.listen(3030)
+app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
