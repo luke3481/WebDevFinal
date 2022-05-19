@@ -1,6 +1,6 @@
 import './login.css';
 
-function LogIn(props) {
+function Login(props) {
     
     return(
         <div class="logincontainer">
@@ -28,4 +28,4 @@ function LogIn(props) {
     );
 }
 
-export default LogIn;
+export default Login;
