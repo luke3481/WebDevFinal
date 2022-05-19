@@ -13,6 +13,7 @@ import Home from "./components/Home";
 import Course from "./components/Course";
 import Invoices from "./components/invoices";
 import Login from "./routes/Login";
+import Account from "./components/Account";
 
 
 function AppCopy() {
@@ -34,6 +35,7 @@ function AppCopy() {
                 <SideBar courses={courses}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/Account/*" element={<Account />} />
                     <Route path="/Course/*" element={<Course />} />
                     <Route path="/Invoices" element={<Invoices />} />
                     <Route path="/Login" element={<Login />} />

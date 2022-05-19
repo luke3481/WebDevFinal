@@ -20,6 +20,14 @@ body {
   grid-gap: 1em;
 }
 
+/* Define the sub grid */
+#nestedcontainer2 {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-gap: 1em;
+}
+
 /* CSS for Sidebar */
 #sidebar {
   grid-column: 1;
@@ -123,6 +131,28 @@ img {
    margin-bottom: 100px;
 }
 
+/* CSS for Sidebar 3 */
+#sidebar3 {
+  grid-column: 1;
+  grid-row: 1;
+  height: 100%;
+  width: 80%;
+  position: sticky;
+  padding-left: 10px;
+}
+
+#sidebar3 a {
+  padding-bottom: 20px;
+  font-size: 16px;
+  display: block;
+  transition: 0.3s;
+}
+
+#sidebar3 p {
+   font-size: 31px;
+   margin-bottom: 100px;
+}
+
 #btnstyle3 {
   align-items: center;
   background-color: #FFFFFF;
@@ -202,6 +232,40 @@ a {
    font-size: 12px;
    height: 1rem;
    margin-bottom: 10px;
+}
+
+/* CSS for Profile section */
+
+#accounthome {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  padding-top: 148px;
+}
+
+#profile {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  padding-top: 148px;
+}
+
+/* CSS for Password section */
+
+#password {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  padding-top: 148px;
+}
+
+/* CSS for Password section */
+
+#security {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  padding-top: 148px;
 }
 
 /* CSS for Create Course section */

@@ -1,5 +1,11 @@
 import React from "react";
 import {useState} from "react";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from 'react-router-dom';
 
 function SideAccountMenu(props) {
 
@@ -18,12 +24,13 @@ function SideAccountMenu(props) {
     return(
         <div>
             <button type="button" id="btnstyle2" onClick={openNav}>
-                        <img src={require("../imgs/account.jpg")}/>
-                        Account
+                <img src={require("../imgs/account.jpg")}/>
+                Account
             </button>
             <div className="sidenav" style={{width: wid}}>
                 <a href="" className="closebtn" onClick={closeNav}>&times;</a>
                 <h3>Account</h3>
+                <Link to ="/Account">Account</Link>
             </div> 
         </div>    
     );
