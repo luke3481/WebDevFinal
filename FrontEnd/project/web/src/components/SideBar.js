@@ -9,10 +9,6 @@ import {
 } from 'react-router-dom';
 
 
-
-
-
-
 function SideBarCopy(props) {  
 
     return(
@@ -23,11 +19,13 @@ function SideBarCopy(props) {
                 <button type="button" id="btnstyle2" ><Link to= "/"><img src={require("../imgs/dashboard.png")}/></Link>Dashboard</button>
                 <SideCoursesMenu width={"0%"} courses={props.courses}/>
                 <button type="button" id="btnstyle2" ><img src={require("../imgs/settings.png")}/>Settings</button>
-                <button type="button" id="btnstyle2"><Link to= "Login"><img src={require("../imgs/logout.png")}/></Link>Logout</button>
+                <button type="button" id="btnstyle2" ><img src={require("../imgs/logout.png")}/>Logout</button>
             </div>
         </div>
     );
 }
+
+
 
 
 

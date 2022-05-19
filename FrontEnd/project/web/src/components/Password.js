@@ -15,7 +15,7 @@ import {
 
 function Password(props) {  
     return(
-        <div id="password">
+        <div id="passwordsec">
             <form>
                 <label for="currentpassword">Current Password:</label><br/>
                 <input type="text" id="currentpassword" name="currentpassword" style={{width: "400px"}} /><br/><br/>
