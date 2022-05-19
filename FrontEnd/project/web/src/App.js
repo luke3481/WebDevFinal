@@ -12,6 +12,7 @@ import Assignments from "./components/Assignments";
 import Home from "./components/Home";
 import Course from "./components/Course";
 import Invoices from "./components/invoices";
+import Login from "./routes/Login";
 
 
 function AppCopy() {
@@ -35,6 +36,7 @@ function AppCopy() {
                     <Route path="/" element={<Home />} />
                     <Route path="/Course/*" element={<Course />} />
                     <Route path="/Invoices" element={<Invoices />} />
+                    <Route path="/Login" element={<Login />} />
                 </Routes>
                 <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'}/>
             </div>
