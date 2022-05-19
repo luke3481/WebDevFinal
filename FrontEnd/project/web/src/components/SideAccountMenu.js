@@ -29,7 +29,6 @@ function SideAccountMenu(props) {
             </button>
             <div className="sidenav" style={{width: wid}}>
                 <a href="" className="closebtn" onClick={closeNav}>&times;</a>
-                <h3>Account</h3>
                 <Link to ="/Account">Account</Link>
             </div> 
         </div>    
