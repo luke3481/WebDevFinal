@@ -13,7 +13,7 @@ import {
 function SideCourses(props) {
 
     return(
-        <div>
+        <div id="sidecourses">
             <Link to ="/Course">{props.course_name}</Link>
         </div>   
     );
