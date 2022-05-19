@@ -7,7 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Login from "./routes/Login";
+import Login from "./routes/LogIn";
 import './index.css';
 
 

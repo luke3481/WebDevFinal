@@ -4,8 +4,8 @@ function Grade(props) {
 
     return (
         <div id="grade">
-            <h4>Dummy assignment</h4>
-            <p>Dummy name</p>
+            <a style={{fontWeight: "bold"}}>Dummy assignment</a>
+            <a>Dummy name</a>
             <a>Dummy grade</a>
             <SubmitGrade />
         </div>

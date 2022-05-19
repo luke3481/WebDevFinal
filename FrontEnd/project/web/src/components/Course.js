@@ -27,7 +27,7 @@ function Course(props) {
                 <p>Courses</p>
                 <Link to="/Course/Announcements">Announcements</Link>
                 <Link to="/Course/Assignments">Assignments</Link>
-                <Link to="/Course/Grades">Grades</Link><br/><br/><br/>
+                <Link to="/Course/Grades">Grades</Link>
                 <Link to="/Course/CreateCourse"><button type="button" id="btnstyle3">Create Course</button></Link>
                 <Link to="/Course/CreateAnnouncement"><button type="button" id="btnstyle3">Create Announcement</button></Link>
             </div>

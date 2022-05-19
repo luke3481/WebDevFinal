@@ -12,7 +12,7 @@ import Assignments from "./components/Assignments";
 import Home from "./components/Home";
 import Course from "./components/Course";
 import Invoices from "./components/invoices";
-import Login from "./routes/Login";
+import Login from "./routes/LogIn";
 import Account from "./components/Account";
 
 

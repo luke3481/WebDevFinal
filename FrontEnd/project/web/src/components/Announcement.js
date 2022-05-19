@@ -5,9 +5,9 @@ function Announcement(props) {
 
     return (
         <div id="announcement">
-            <h4>Dummy title</h4>
-            <p>Dummy date</p>
-            <a href="">Dummy content</a>
+            <a style={{fontWeight: "bold"}}>Dummy title</a>
+            <a>Dummy date</a>
+            <a>Dummy content</a>
         </div>
     );
 }

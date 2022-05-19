@@ -4,8 +4,8 @@ function Assignment(props) {
 
     return (
         <div id="assignment">
-            <h4>Dummy assignment</h4>
-            <p>Dummy name</p>
+            <a style={{fontWeight: "bold"}}>Dummy assignment</a>
+            <a>Dummy name</a>
             <a>Dummy data</a>
             <SubmitAssignment />
         </div>

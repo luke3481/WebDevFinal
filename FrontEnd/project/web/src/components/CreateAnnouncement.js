@@ -12,12 +12,12 @@ import {
 
  
 
-function CreateA(props) {  
+function CreateAnnouncement(props) {  
 
     return(
         <div id="create_announcement">
             <form>
-                <label for="announcement">Announcement:</label><br/>
+                <a style={{fontWeight: "bold", fontSize: 20}}>Announcement:</a><br/>
                 <input type="text" id="announcement" name="announcement" style={{width: "400px"}} /><br/><br/>
                 <input type="submit" />
             </form>
@@ -27,4 +27,4 @@ function CreateA(props) {
 
 
 
-export default CreateA;
+export default CreateAnnouncement;
