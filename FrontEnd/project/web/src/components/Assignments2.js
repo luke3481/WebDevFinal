@@ -22,9 +22,6 @@ function Assignments2(props) {
             <Assignment />
             <Assignment />
             <Assignment />
-            <Routes>
-                <Route path="/SubmitAssignment" element={<SubmitAssignment />} />
-            </Routes>
         </div>
     );
 }

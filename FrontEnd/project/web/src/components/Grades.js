@@ -3,7 +3,6 @@ import SideCoursesMenu from "./SideCoursesMenu";
 import SideAccountMenu from "./SideAccountMenu";
 import Grade from "./Grade";
 import ClassTile from "./ClassTile";
-import InputGrade from "./InputGrade";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -22,9 +21,6 @@ function Grades(props) {
             <Grade />
             <Grade />
             <Grade />
-            <Routes>
-                <Route path="/InputGrade" element={<InputGrade />} />
-            </Routes>
         </div>
     );
 }

@@ -16,8 +16,8 @@ function AnnouncementDetails(props) {
 
     return(
         <div id="announcement_ds">
-            <p style={{ fontSize: 20 }}>Dummy title</p>
-            <p>Dummy content</p>
+            <a style={{ fontSize: 20 }}>Dummy title</a>
+            <a>Dummy content</a>
         </div>
     );
 }
