@@ -1,0 +1,168 @@
+body {
+    margin: 0;  
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Design for desktop and tablets */
+@media only screen and (min-width: 768px)
+{
+    .logincontainer {
+        background-image: url('../imgs/loginbackground.jpg');
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+        font-size: 15px;
+        color: #fff;
+        margin: 0px 0px 0px 0px;
+        padding: 0;
+        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 150px 1fr;
+        height: 100vh;
+    }
+
+    #header {
+        grid-row: 1;
+        grid-column: 2;
+        padding-top: 30px;
+        padding-right: 10%;
+        padding-left: 10%;
+        background: #800000;
+    }
+    
+    #main {
+        grid-column: 2;
+        grid-row: 2;
+        background-color: black;
+        padding-top: 30px;
+        padding-right: 10%;
+        padding-left: 10%;
+        opacity: 0.8;
+    }
+
+    #main form .input-wrapper {
+        margin-top: 30px;
+    }
+    
+    #main form input[type="text"], #main form input[type="password"] {
+        position: relative;
+        text-indent: 10px;
+        width: 100%;
+        height: 44px;
+        box-shadow: inset 0 0 2px #000;
+        border-radius: 2px;
+        border: none;
+        font-size: .88em;
+        color: #363636;
+        background-color: #fff;
+    }
+    
+    #forgot {
+        display: block;
+        font-size: .75em;
+        margin: 30px auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
+
+    
+    #signup {
+        display: block;
+        font-size: .75em;
+        margin: 0 auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
+    
+    #submit {
+        width: 50%;
+        padding: 15px;
+        border: none;
+        background-color: #800000;
+        color: #fff;
+    }
+}
+
+
+/* Design for phones */
+@media only screen and (max-width: 767px) {
+    .container {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+        font-size: 18px;
+        color: #fff;
+        margin: 0px 0px 0px 0px;
+        padding: 0;
+        text-align: center;
+        background-image: none;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: stretch;
+    }
+
+    #header {
+        padding-top: 30px;
+        padding-right: 10%;
+        padding-left: 10%;
+        padding-bottom: 30px;
+        background: #800000;
+    }
+    
+    #main {
+        background-color: black;
+        padding-top: 30px;
+        padding-right: 10%;
+        padding-left: 10%;
+        opacity: 0.8;
+    }
+
+    #main form .input-wrapper {
+        margin-bottom: 30px;
+    }
+    
+    #main form input[type="text"], #main form input[type="password"] {
+        position: relative;
+        text-indent: 10px;
+        width: 100%;
+        height: 44px;
+        box-shadow: inset 0 0 2px #000;
+        border-radius: 2px;
+        border: none;
+        font-size: .88em;
+        color: #363636;
+        background-color: #fff;
+    }
+    
+    #forgot {
+        display: block;
+        font-size: .75em;
+        margin: 0 auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
+
+    #signup {
+        display: block;
+        font-size: .75em;
+        margin: 0 auto 15px auto;
+        color: #fff;
+        background: none;
+        border: none;
+        text-decoration: underline;
+    }
+    
+    #submit {
+        width: 50%;
+        padding: 15px;
+        border: none;
+        background-color: #800000;
+        color: #fff;
+    }
+}
