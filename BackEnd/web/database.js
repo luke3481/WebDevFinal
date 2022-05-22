@@ -75,55 +75,112 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     db.run(insert, ["Python","basics", "90"])
                 }
             });
-    }
-});
-
-
-module.exports = db
-
-
-
-
-
-/*
-`CREATE TABLE class_teacher (
+        
+        db.run(
+            `CREATE TABLE class_teacher (
                 class_id integer,
                 teacher_id character, 
                 FOREIGN KEY (class_id) REFERENCES class(class_id),
                 FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
                 )`,
+            (err) => {
+                if (err) {
+                    // Table is already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO class_teacher (class_id, teacher_id) VALUES (?,?)'
+                    db.run(insert, ["1","1"]),
+                    db.run(insert, ["2","2"])
+                }
+            });
 
+        db.run(
             `CREATE TABLE teacher (
                 teacher_id integer PRIMARY KEY AUTOINCREMENT,
-                teacher_name character, 
+                teacher_name character
                 )`,
+            (err) => {
+                if (err) {
+                    // Table is already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO teacher (teacher_name) VALUES (?)'
+                    db.run(insert, ["Jimmy"]),
+                    db.run(insert, ["Rick"])
+                }
+            });
 
+        db.run(
             `CREATE TABLE user_assignment (
-                user_id integer PRIMARY KEY AUTOINCREMENT,
-                assignment_id character,
+                user_id integer,
+                assignment_id integer,
                 points integer,
                 content character, 
                 FOREIGN KEY (user_id) REFERENCES user(user_id),
                 FOREIGN KEY (assignment_id) REFERENCES assignment(assignment_id)
                 )`,
-            
+            (err) => {
+                if (err) {
+                    // Table already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO user_assignment (user_id, assignment_id, points, content) VALUES (?,?,?,?)'
+                    db.run(insert, ["1","1", "100", "good job!"])
+                }
+            });
+
+        db.run(
             `CREATE TABLE assignment (
                 assignment_id integer PRIMARY KEY AUTOINCREMENT,
                 assignment_name character,
                 due_date character
                 )`,
+            (err) => {
+                if (err) {
+                    // Table already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO assignment (assignment_name, due_date) VALUES (?,?)'
+                    db.run(insert, ["final project", "05/23/22"])
+                }
+            });
 
+        db.run(
             `CREATE TABLE class_announcement (
                 class_id integer,
                 announcement_id interger,
                 FOREIGN KEY (class_id) REFERENCES class(class_id),
                 FOREIGN KEY (announcement_id) REFERENCES announcement(announcement_id)
                 )`,
-
+            (err) => {
+                if (err) {
+                    // Table already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO class_announcement (class_id, announcement_id) VALUES (?,?)'
+                    db.run(insert, ["1", "1"])
+                }
+            });
+        
+        db.run(
             `CREATE TABLE announcement (
                 announcement_id integer PRIMARY KEY AUTOINCREMENT,
                 announcement_title character,
                 announcement_detail character,
                 announcement_date character
                 )`,
-*/
+            (err) => {
+                if (err) {
+                    // Table already created
+                }else{
+                    // Table just created, creating some rows
+                    const insert = 'INSERT INTO announcement (announcement_id, announcement_title, announcement_detail, announcement_date) VALUES (?,?,?,?)'
+                    db.run(insert, ["1", "1", "stuff", "05/20/22"])
+                }
+            });
+    }
+});
+
+
+module.exports = db
+
