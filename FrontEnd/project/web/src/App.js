@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -17,9 +17,23 @@ import Account from "./components/Account";
 import useToken from "./components/useToken";
 
 
+
+
+
+
+
+
 function AppCopy() {
    
+
+    const {token, setToken} = useToken();
+    const [main_menu, setMain] = useState("home");
+    const [sub_menu, setSub] = useState("create_c");
+    const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
+   
     
+
+
     if(!token) {
         return <Login setToken={setToken} />
     }
