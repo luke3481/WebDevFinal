@@ -18,18 +18,7 @@ import useToken from "./components/useToken";
 
 
 function AppCopy() {
-
-
-    const { token, setToken } = useToken();
-    const [main_menu, setMain] = useState("home");
-    const [sub_menu, setSub] = useState("create_c");
-    const [courses, setCourses] = useState(["Course 1", "Course 2", "Course 3"]);
-    const [announcements, setAnnouncements] = useState([
-                                                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."],
-                                                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."],
-                                                ["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."]
-                                            ]);
-    const [announcement_d, setAd] = useState(["Announcement 6", "2022-05-11", "Hi all, Assignment 6 and the progress report assignments are available on Canvas."]);   
+   
     
     if(!token) {
         return <Login setToken={setToken} />
