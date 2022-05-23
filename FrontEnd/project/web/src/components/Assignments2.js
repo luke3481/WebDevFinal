@@ -1,6 +1,5 @@
 import React from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
-import SideAccountMenu from "./SideAccountMenu";
 import Assignment from "./Assignment";
 import ClassTile from "./ClassTile";
 import SubmitAssignment from "./SubmitAssignment";

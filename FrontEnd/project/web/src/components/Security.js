@@ -1,6 +1,5 @@
 import React from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
-import SideAccountMenu from "./SideAccountMenu";
 import Announcement from "./Announcement";
 import ClassTile from "./ClassTile";
 import {

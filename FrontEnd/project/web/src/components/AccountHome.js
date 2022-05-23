@@ -1,16 +1,4 @@
 import React from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
-import SideAccountMenu from "./SideAccountMenu";
-import Announcement from "./Announcement";
-import ClassTile from "./ClassTile";
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-} from 'react-router-dom';
- 
-
 
 
 function AccountHome(props) {  

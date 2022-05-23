@@ -11,7 +11,11 @@ function Assignments(props) {
             <hr/>
         </div>
         <ul>
-            <li>{props.Ass1}</li>
+            <li>{props.Ass1}<br/>
+                 Class Name<br/>
+                 Num Points<br/>
+                 Due Date<br/>
+            </li>
             <li>{props.Ass2}</li>
             <li>{props.Ass3}</li>
         </ul>

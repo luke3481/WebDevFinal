@@ -19,6 +19,7 @@ function Account(props) {
         <div id="nestedcontainer2">
             <div id="sidebar3">
                 <p>Account</p>
+                <Link to="/Account">Account Home</Link>
                 <Link to="/Account/Profile">Edit Profile</Link>
                 <Link to="/Account/Password">Change Password</Link>
                 <Link to="/Account/Security">Change Security Questions</Link><br/><br/><br/>
