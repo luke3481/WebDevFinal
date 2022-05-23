@@ -28,9 +28,11 @@ function SideCoursesMenu(props) {
             <div className="sidenav" style={{width: wid}}>
                 <a href="" className="closebtn" onClick={closeNav}>&times;</a>
                 <h3>Courses</h3>
-                <SideCourses course_name={props.courses[0]}/>
-                <SideCourses course_name={props.courses[1]}/>
-                <SideCourses course_name={props.courses[2]}/>
+                <div onClick={closeNav}>
+                    <SideCourses course_name={props.courses[0]}/>
+                    <SideCourses course_name={props.courses[1]}/>
+                    <SideCourses course_name={props.courses[2]}/>
+                </div>
             </div> 
         </div>    
     );
