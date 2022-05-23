@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 
-function SideBarCopy(props) {  
+function SideBar(props) {  
 
     return(
         <div id="sidebar">
@@ -28,4 +28,4 @@ function SideBarCopy(props) {
 
 
 
-export default SideBarCopy;
+export default SideBar;
