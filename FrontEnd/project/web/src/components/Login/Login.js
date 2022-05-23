@@ -56,10 +56,10 @@ export default function Login({ setToken }) {
               <button type="submit" id="submit" name="submit" class="submit">LOG IN</button>
           </div>
         </form>
-          {/* <Routes>
+          <Routes>
             <Route path="/Forgotpassword" element={<Forgotpassword />} />
             <Route path="/Newuser" element={<Newuser />} />
-          </Routes> */}
+          </Routes>
       </div>
     </div>
   )
