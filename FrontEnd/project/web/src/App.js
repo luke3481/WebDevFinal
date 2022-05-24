@@ -22,12 +22,6 @@ import useToken from "./components/useToken";
 
 
 
-
-
-
-
-
-
 function AppCopy() {
    
 
@@ -39,7 +33,8 @@ function AppCopy() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-   
+
+
     useEffect(() => {
         const getData = async () => {
             try {
@@ -60,7 +55,7 @@ function AppCopy() {
             }
         }
         getData()
-    });
+    }, []);
         
             
     

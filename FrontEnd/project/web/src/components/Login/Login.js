@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
 import Forgotpassword from "./Forgotpassword"
@@ -23,8 +23,6 @@ async function loginUser(credentials) {
 
 
 export default function Login({ setToken }) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -34,6 +32,8 @@ export default function Login({ setToken }) {
     });
     setToken(token);
   }
+  const [username, setUserName] = useState(null);
+  const [password, setPassword] = useState(null);
 
   return(
     <div class="logincontainer">
@@ -45,23 +45,24 @@ export default function Login({ setToken }) {
         <form onSubmit={handleSubmit}>
           <div id="alert" aria-atomic="true" role="alert"></div>
           <div class="input-wrapper">
-              <input id="username" name="username" type="text" class="form-control" autocapitalize="off" spellcheck="false" value="" placeholder="Username" autofocus="" onChange={e => setUserName(e.target.value)}/>
+              <input id="username" name="username" type="text" class="form-control" autocapitalize="off" spellcheck="false" placeholder="Username" autofocus="" onChange={e => setUserName(e.target.value)}/>
           </div>
           <div class="input-wrapper">
-              <input id="password" name="password"  type="password" class="form-control" autocapitalize="off" spellcheck="false" value=""  placeholder="Password" onChange={e => setUserName(e.target.value)}/>
+              <input id="password" name="password"  type="password" class="form-control" autocapitalize="off" spellcheck="false"  placeholder="Password" onChange={e => setPassword(e.target.value)}/>
           </div>
           <div class="submit-buttons">
-              <button type="submit" id="forgot" name="forgot" class="forgot" ><Link to="/Forgotpassword">Forgot your password?</Link></button>
+              <button type="submit" id="forgot" name="forgot" class="forgot"><Link to="/Forgotpassword">Forgot your password?</Link></button>
               <button type="submit" id="signup" name="signup" class="signup"><Link to="/Newuser">New User</Link></button>
               <button type="submit" id="submit" name="submit" class="submit">LOG IN</button>
           </div>
         </form>
-          <Routes>
-            <Route path="/Forgotpassword" element={<Forgotpassword />} />
-            <Route path="/Newuser" element={<Newuser />} />
-          </Routes>
       </div>
+      <Routes>
+          <Route path= "/Forgotpassword" element={<Forgotpassword />} />
+          <Route path= "/Newuser" element={<Newuser />} />
+      </Routes>
     </div>
+
   )
 }
 

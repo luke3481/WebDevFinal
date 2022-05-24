@@ -7,6 +7,10 @@ import {
 	Link,
 } from 'react-router-dom';
 
+async function logout() {
+    localStorage.removeItem("token")
+    window.location.reload(false);
+}
 
 function SideBar(props) {  
 
@@ -18,7 +22,7 @@ function SideBar(props) {
                 <button type="button" id="btnstyle2" ><Link to= "/"><img src={require("../imgs/dashboard.png")}/></Link>Dashboard</button>
                 <SideCoursesMenu width={"0%"} courses={props.courses}/>
                 <button type="button" id="btnstyle2" ><Link to="/Settings"><img src={require("../imgs/settings.png")}/></Link>Settings</button>
-                <button type="button" id="btnstyle2" ><img src={require("../imgs/logout.png")}/>Logout</button>
+                <button type="button" id="btnstyle2" onClick={(logout)}><Link to="/"><img src={require("../imgs/logout.png")}/></Link>Logout</button>
             </div>
         </div>
     );

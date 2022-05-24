@@ -23,9 +23,9 @@ router.get("/list", (req, res, next) => {
   });
 
 //returns a single user from the user table
-router.get("/:id", (req, res, next) => {
-    let sql = "select * from user where user_id = ?"
-    let params = [req.params.id]
+router.get("/:user_name", (req, res, next) => {
+    let sql = "select * from user where user_name = ?"
+    let params = [req.params.user_name]
     db.get(sql, params, (err, rows) => {
         if (err) {
           res.status(400).json({"error":err.message});

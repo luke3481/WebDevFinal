@@ -6,6 +6,10 @@ button {
     cursor: pointer;
 }
 
+a {
+    color: white;
+}
+
 /* Design for desktop and tablets */
 @media only screen and (min-width: 768px)
 {
@@ -41,7 +45,7 @@ button {
         padding-left: 10%;
         opacity: 0.8;
     }
-
+    
     #main form .input-wrapper {
         margin-top: 30px;
     }

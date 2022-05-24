@@ -3,8 +3,8 @@
 
 
 function Forgotpassword() {  
-
     return(
+        <div id="main">
         <div id="forgotpassword">
             <p><h2>Answer the following security questions to reset your password:</h2></p><br></br>
             <form>
@@ -20,9 +20,10 @@ function Forgotpassword() {
             </form><br/><br/>
             <form>
                 <label for="resetpassword">Reset Password **hide this section until successful submission of above**</label><br/>
-                <input type="text" id="restpassword" name="resetpassword" /><input type="submit" /><br/><br/>
+                <input type="text" id="restpassword" name="resetpassword" /><br/><br/><input type="submit" />
             </form>
         </div>
+    </div>
     );
 }
 

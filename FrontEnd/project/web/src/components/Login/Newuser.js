@@ -4,7 +4,8 @@
 function Newuser() {  
 
     return(
-        <div id="forgotpassword">
+        <div id="main">
+            <div id="forgotpassword">
             <p><h2>New User: </h2></p><br></br>
             <form>
                 <label for="newusername">Name: </label><br/>
@@ -40,6 +41,8 @@ function Newuser() {
                 <input type="submit" />
             </form><br/><br/>
         </div>
+        </div>
+        
     );
 }
 
