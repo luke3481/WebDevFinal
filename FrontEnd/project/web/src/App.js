@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {useState, useEffect} from "react";
 import {
 	BrowserRouter as Router,
@@ -26,6 +27,7 @@ import useToken from "./components/useToken";
 
 
 
+
 function AppCopy() {
    
 
@@ -33,9 +35,35 @@ function AppCopy() {
     const [main_menu, setMain] = useState("home");
     const [sub_menu, setSub] = useState("create_c");
     const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
-   
-    
 
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+   
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/class/list');
+                if (!response.ok) {
+                    throw new Error(
+                        'This is an HTTP error: The status is ${response.status}'
+                    );
+                }
+                let actualData = await response.json();
+                setCourses([actualData.data['0']['class_name'],actualData.data['1']['class_name'],actualData.data['2']['class_name']]);
+                setError(null);
+            } catch (err) {
+                setError(err.message);
+                setData(null);
+            } finally {
+                setLoading(false);
+            }
+        }
+        getData()
+    });
+        
+            
+    
 
     if(!token) {
         return <Login setToken={setToken} />
