@@ -16,23 +16,57 @@ import Settings from "./components/Settings";
 import useToken from "./components/useToken";
 
 function AppCopy() {
-  const { token, setToken } = useToken();
-  const [main_menu, setMain] = useState("home");
-  const [sub_menu, setSub] = useState("create_c");
-  const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
+  // const { token, setToken } = useToken();
+  // const [main_menu, setMain] = useState("home");
+  // const [sub_menu, setSub] = useState("create_c");
+  // const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+    const {token, setToken} = useToken();
+    const [main_menu, setMain] = useState("home");
+    const [sub_menu, setSub] = useState("create_c");
+    const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
+    const [courseIds, setCourseIds] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/class/list");
-        if (!response.ok) {
-          throw new Error(
-            "This is an HTTP error: The status is ${response.status}"
-          );
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/class/list');
+                if (!response.ok) {
+                    throw new Error(
+                        'This is an HTTP error: The status is ${response.status}'
+                    );
+                }
+                // Pull course data 
+                let actualData = await response.json();  
+                
+                const length = parseInt(actualData.data.length);
+                
+                // Parse course data
+                let tempCourses = [];
+                for (var i = 0; i < length; i++) {
+                    tempCourses.push(actualData.data[i].class_name)
+                }
+                setCourses(tempCourses);
+                
+                // Parse course id data
+                let tempCourseIds = [];
+                for (var i = 0; i < length; i++) {
+                    tempCourseIds.push(actualData.data[i].class_id)
+                }
+                setCourseIds(tempCourseIds);
+                
+                setError(null);
+            } catch (err) {
+                setError(err.message);
+                setData(null);
+            } finally {
+                setLoading(false);
+            }
         }
         let actualData = await response.json();
         setCourses([
@@ -51,9 +85,31 @@ function AppCopy() {
     getData();
   }, []);
 
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
+    // if(!token) {
+    //     return <Login setToken={setToken} />
+    // }
+    
+    return (
+        <div className="App">
+            <div className="container">
+                <SideBar courses={courses} courseIds={courseIds} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    {/* below is activated and above is inactivated if admin account */}
+                    {/* <Route path="/" element={<Adminhome />} /> */}
+                    <Route path="/Account/*" element={<Account />} />
+                    <Route path="/Course/*" element={<Course />} />
+                    <Route path="/Settings/*" element={<Settings />} />
+                    <Route path="/Invoices" element={<Invoices />} />
+                    <Route path="/LogIn" element={<Login />} />
+                </Routes>
+                <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} />
+                {/* Below needs to be shown instead of above for teacher accounts */}
+                {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
+            </div>
+        </div> 
+    );
+} 
 
   return (
     <div className="App">
