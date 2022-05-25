@@ -15,17 +15,25 @@ import {
 	Routes,
 	Route,
 	Link,
+	useLocation,
 } from 'react-router-dom';
 
 
  
- 
-function Course(props) {  
+function Course() {  
+    
+    const location = useLocation()
+    const courseId = location.state.courseId
+    const course = location.state.course
+    
+    // Does state passing work?
+    console.log(courseId);
+    console.log(course);
 
     return(
         <div id="nestedcontainer">
             <div id="sidebar2">
-                <p>Courses</p>
+                <p>{course}</p>
                 <Link to="/Course/Announcements">Announcements</Link>
                 <Link to="/Course/Assignments">Assignments</Link>
                 <Link to="/Course/Grades">Grades</Link>
@@ -33,7 +41,7 @@ function Course(props) {
                 <Link to="/Course/CreateAnnouncement"><button type="button" id="btnstyle3">Create Announcement</button></Link>
             </div>
             <Routes>
-                <Route path="/" element={<CourseHome />} />
+                <Route path="*" element={<CourseHome />} />
                 <Route path="/Announcements" element={<Announcements />} />
                 <Route path="/AnnouncementDetails" element={<AnnouncementDetails />} />
                 <Route path="/CreateAnnouncement" element={<CreateAnnouncement />} />

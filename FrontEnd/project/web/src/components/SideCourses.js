@@ -11,10 +11,10 @@ import {
 
 
 function SideCourses(props) {
-
+    
     return(
         <div id="sidecourses">
-            <Link to ="/Course">{props.course_name}</Link>
+            <Link to="/Course" state={{course: props.course, courseId: props.courseId}} >{props.course}</Link>
         </div>   
     );
 }

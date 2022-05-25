@@ -29,6 +29,7 @@ function AppCopy() {
     const [main_menu, setMain] = useState("home");
     const [sub_menu, setSub] = useState("create_c");
     const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
+    const [courseIds, setCourseIds] = useState([]);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -44,8 +45,25 @@ function AppCopy() {
                         'This is an HTTP error: The status is ${response.status}'
                     );
                 }
-                let actualData = await response.json();
-                setCourses([actualData.data['0']['class_name'],actualData.data['1']['class_name'],actualData.data['2']['class_name']]);
+                // Pull course data 
+                let actualData = await response.json();  
+                
+                const length = parseInt(actualData.data.length);
+                
+                // Parse course data
+                let tempCourses = [];
+                for (var i = 0; i < length; i++) {
+                    tempCourses.push(actualData.data[i].class_name)
+                }
+                setCourses(tempCourses);
+                
+                // Parse course id data
+                let tempCourseIds = [];
+                for (var i = 0; i < length; i++) {
+                    tempCourseIds.push(actualData.data[i].class_id)
+                }
+                setCourseIds(tempCourseIds);
+                
                 setError(null);
             } catch (err) {
                 setError(err.message);
@@ -67,7 +85,7 @@ function AppCopy() {
     return (
         <div className="App">
             <div className="container">
-                <SideBar courses={courses}/>
+                <SideBar courses={courses} courseIds={courseIds}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     {/* below is activated and above is inactivated if admin account */}
