@@ -7,7 +7,6 @@ import {
 	Route,
 	Link,
 } from 'react-router-dom';
-
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
@@ -107,31 +106,30 @@ function AppCopy() {
         getData()
     }, []);
 
-    if(!token) {
-        return <Login setToken={setToken} />
-    }
-    
-    return (
-        <div className="App">
-            <div className="container">
-                <SideBar courses={courses} courseIds={courseIds} />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    {/* below is activated and above is inactivated if admin account */}
-                    {/* <Route path="/" element={<Adminhome />} /> */}
-                    <Route path="/Account/*" element={<Account />} />
-                    <Route path="/Course/*" element={<Course />} />
-                    <Route path="/Settings/*" element={<Settings />} />
-                    <Route path="/Invoices" element={<Invoices />} />
-                    <Route path="/LogIn" element={<Login />} />
-                </Routes>
-                <Assignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} />
-                {/* Below needs to be shown instead of above for teacher accounts */}
-                {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
-            </div>
-        </div> 
-    );
-} 
-
+  return (
+    <div className="App">
+      <div className="container">
+        <SideBar courses={courses} courseIds={courseIds} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* below is activated and above is inactivated if admin account */}
+          {/* <Route path="/" element={<Adminhome />} /> */}
+          <Route path="/Account/*" element={<Account />} />
+          <Route path="/Course/*" element={<Course />} />
+          <Route path="/Settings/*" element={<Settings />} />
+          <Route path="/Invoices" element={<Invoices />} />
+          <Route path="/LogIn" element={<Login />} />
+        </Routes>
+        <Assignments
+          Ass1={"assignment1"}
+          Ass2={"assignment2"}
+          Ass3={"assignment3"}
+        />
+        {/* Below needs to be shown instead of above for teacher accounts */}
+        {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
+      </div>
+    </div>
+  );
+}
 
 export default AppCopy;

@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
-const logger = require ("morgan");
+const logger = require("morgan");
 
 //imports for sqlite database calls
 const usersRouter = require("./routes/users");
@@ -18,9 +18,9 @@ const announcementRouter = require("./routes/announcement");
 const app = express();
 
 //idk what these are but I'm afraid to delete them
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //middle ware that handles calls to the databases
@@ -34,15 +34,15 @@ app.use("/assignment", assignmentRouter);
 app.use("/class_announcements", classAnnouncementRouter);
 app.use("/announcement", announcementRouter);
 
-
 //Luke's log in call. Maybe replace with user?
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
-});
+// app.use('/login', (req, res) => {
+//   res.send({
+//     token: 'test123'
+//   });
+// });
 
-app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
-
+app.listen(8080, () =>
+  console.log("API is running on http://localhost:8080/login")
+);
 
 module.exports = app;
