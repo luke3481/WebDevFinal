@@ -30,10 +30,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     // Table already created
                 }else{
                     // Table just created, creating some rows
-                    const insert = 'INSERT INTO user (user_name, password, name, student_id, email, account_type, status, a1, a2, a3) VALUES (?,?,?,?,?,?,?,?,?,?)'
-                    db.run(insert, ["LB",md5("password1"),"Luke Birch", "532", "LukeBirch@chicagobooth.edu", "student", 'active']),
-                    db.run(insert, ["SJ",md5("password2"),"Seojoon Oh", "533", "Seojoon@chicagobooth.edu", "student", 'active']),
-                    db.run(insert, ["SR",md5("password3"),"Syd Reynolds", "534", "SydReynolds@chicagobooth.edu", "student", 'active'])
+                    const insert = 'INSERT INTO user (user_id, user_name, password, name, student_id, email, account_type, status, a1, a2, a3) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
+                    db.run(insert, [1, "LB",md5("password1"),"Luke Birch", "532", "LukeBirch@chicagobooth.edu", "student", 'active']),
+                    db.run(insert, [2, "SJ",md5("password2"),"Seojoon Oh", "533", "Seojoon@chicagobooth.edu", "student", 'active']),
+                    db.run(insert, [3, "SR",md5("password3"),"Syd Reynolds", "534", "SydReynolds@chicagobooth.edu", "student", 'active'])
                 }
             });
 
@@ -69,10 +69,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     // Table already created
                 }else{
                     // Table just created, creating some rows
-                    const insert = 'INSERT INTO class (class_name, description, capacity) VALUES (?,?,?)'
-                    db.run(insert, ["WebDev","lego class", "30"]),
-                    db.run(insert, ["Algos","why do they make us take this?", "60"]),
-                    db.run(insert, ["Python","basics", "90"])
+                    const insert = 'INSERT INTO class (class_id, class_name, description, capacity) VALUES (?,?,?,?)'
+                    db.run(insert, [1, "WebDev","lego class", "30"]),
+                    db.run(insert, [2, "Algos","why do they make us take this?", "60"]),
+                    db.run(insert, [3, "Python","basics", "90"])
                 }
             });
         

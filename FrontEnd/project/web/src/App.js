@@ -7,6 +7,7 @@ import {
 	Route,
 	Link,
 } from 'react-router-dom';
+
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
@@ -20,22 +21,58 @@ import Account from "./components/Account";
 import Settings from "./components/Settings";
 import useToken from "./components/useToken";
 
-
-
 function AppCopy() {
-   
 
     const {token, setToken} = useToken();
-    const [main_menu, setMain] = useState("home");
     const [sub_menu, setSub] = useState("create_c");
-    const [courses, setCourses] = useState(["Course1", "Course2", "Course3"]);
-    const [courseIds, setCourseIds] = useState([]);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
+    const [courseIds, setCourseIds] = useState([]);  
+    
+    const [courses, setCourses] = useState([]);
+    
+    // Retrieve user_id from token
+    const user_id = 1;
+    
+    // Retrieve class_ids tied to user_id  
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/user_class/list');
+                if (!response.ok) {
+                    throw new Error(
+                        'This is an HTTP error: The status is ${response.status}'
+                    );
+                }
+                // Pull user/course data 
+                let actualData = await response.json();  
+                
+                const length = parseInt(actualData.data.length);
+                
+                // Parse course id data
+                let tempCourseIds = [];
+                for (var i = 0; i < length; i++) {
+                    if (actualData.data[i].user_id == user_id) {
+                        tempCourseIds.push(actualData.data[i].class_id)
+                    }
+                }
+                setCourseIds(tempCourseIds);
+                
+                setError(null);
+            } catch (err) {
+                setError(err.message);
+                setData(null);
+            } finally {
+                setLoading(false);
+            }
+        }
+        getData()
+    }, []);
 
-
+    // Retrieve class_names tied to class_ids
     useEffect(() => {
         const getData = async () => {
             try {
@@ -53,16 +90,11 @@ function AppCopy() {
                 // Parse course data
                 let tempCourses = [];
                 for (var i = 0; i < length; i++) {
-                    tempCourses.push(actualData.data[i].class_name)
+                    if (courseIds.includes(actualData.data[i].class_id)) {
+                        tempCourses.push(actualData.data[i].class_name)
+                    } 
                 }
                 setCourses(tempCourses);
-                
-                // Parse course id data
-                let tempCourseIds = [];
-                for (var i = 0; i < length; i++) {
-                    tempCourseIds.push(actualData.data[i].class_id)
-                }
-                setCourseIds(tempCourseIds);
                 
                 setError(null);
             } catch (err) {
@@ -74,9 +106,6 @@ function AppCopy() {
         }
         getData()
     }, []);
-        
-            
-    
 
     if(!token) {
         return <Login setToken={setToken} />
