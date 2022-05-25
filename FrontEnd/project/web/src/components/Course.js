@@ -34,7 +34,7 @@ function Course() {
         <div id="nestedcontainer">
             <div id="sidebar2">
                 <p>{course}</p>
-                <Link to="/Course/Announcements">Announcements</Link>
+                <Link to="/Course/Announcements" state={{course: course, courseId: courseId}} >Announcements</Link>
                 <Link to="/Course/Assignments">Assignments</Link>
                 <Link to="/Course/Grades">Grades</Link>
                 <Link to="/Course/CreateCourse"><button type="button" id="btnstyle3">Create Course</button></Link>

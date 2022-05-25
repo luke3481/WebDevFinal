@@ -85,7 +85,7 @@ function AppCopy() {
     return (
         <div className="App">
             <div className="container">
-                <SideBar courses={courses} courseIds={courseIds}/>
+                <SideBar courses={courses} courseIds={courseIds} />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     {/* below is activated and above is inactivated if admin account */}
