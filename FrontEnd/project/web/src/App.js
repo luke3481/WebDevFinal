@@ -1,12 +1,15 @@
 import React from "react";
-import axios from "axios";
 import {useState, useEffect} from "react";
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
 	Link,
+	useLocation,
 } from 'react-router-dom';
+
+import axios from "axios";
+
 import ClassTile from "./components/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
@@ -29,16 +32,16 @@ function AppCopy() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     
-    const [courseIds, setCourseIds] = useState([]);  
+    const [courseIds, setCourseIds] = useState(['1', '2', '3']);  
     
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState(['WebDev', 'Algos', 'Python']);
     
     // Retrieve user_id from token
-    const user_id = 1;
+    const user_id = '1';
     
     // Retrieve class_ids tied to user_id  
     useEffect(() => {
-        const getData = async () => {
+        const getData1 = async () => {
             try {
                 const response = await fetch('http://localhost:8080/user_class/list');
                 if (!response.ok) {
@@ -46,8 +49,12 @@ function AppCopy() {
                         'This is an HTTP error: The status is ${response.status}'
                     );
                 }
+                
                 // Pull user/course data 
                 let actualData = await response.json();  
+                
+                // Debugging
+                console.log(actualData.data);
                 
                 const length = parseInt(actualData.data.length);
                 
@@ -58,7 +65,14 @@ function AppCopy() {
                         tempCourseIds.push(actualData.data[i].class_id)
                     }
                 }
+                
+                // Debugging
+                console.log(tempCourseIds);
+                
                 setCourseIds(tempCourseIds);
+                
+                // Debugging
+                console.log(courseIds); 
                 
                 setError(null);
             } catch (err) {
@@ -68,12 +82,12 @@ function AppCopy() {
                 setLoading(false);
             }
         }
-        getData()
+        getData1()
     }, []);
 
     // Retrieve class_names tied to class_ids
     useEffect(() => {
-        const getData = async () => {
+        const getData2 = async () => {
             try {
                 const response = await fetch('http://localhost:8080/class/list');
                 if (!response.ok) {
@@ -84,6 +98,8 @@ function AppCopy() {
                 // Pull course data 
                 let actualData = await response.json();  
                 
+                console.log(actualData.data);
+                
                 const length = parseInt(actualData.data.length);
                 
                 // Parse course data
@@ -93,7 +109,9 @@ function AppCopy() {
                         tempCourses.push(actualData.data[i].class_name)
                     } 
                 }
+                
                 setCourses(tempCourses);
+                console.log(courses);
                 
                 setError(null);
             } catch (err) {
@@ -103,15 +121,15 @@ function AppCopy() {
                 setLoading(false);
             }
         }
-        getData()
+        getData2()
     }, []);
 
   return (
     <div className="App">
       <div className="container">
-        <SideBar courses={courses} courseIds={courseIds} />
+        <SideBar courses={["WebDev", "Algos", "Python"]} courseIds={["1", "2", "3"]} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Home />} />
           {/* below is activated and above is inactivated if admin account */}
           {/* <Route path="/" element={<Adminhome />} /> */}
           <Route path="/Account/*" element={<Account />} />

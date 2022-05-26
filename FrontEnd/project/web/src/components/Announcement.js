@@ -4,6 +4,7 @@ import {
 	Routes,
 	Route,
 	Link,
+	useLocation,
 } from 'react-router-dom';
 
 
@@ -11,13 +12,16 @@ import {
 
 function Announcement(props) {
     
-    console.log(props.announcement);
+    const courseId = props.courseId
+    const course = props.course
+    const announcementTitle = props.announcementTitle
+    const announcement = props.announcement
     
     return (
-        <Link to="/Course/AnnouncementDetails">
+        <Link to="/Course/AnnouncementDetails" state={{course: course, courseId: courseId, announcementTitle: announcementTitle, announcement: announcement}}>
             <span id="announcement">
-                <a style={{fontWeight: "bold"}}>Dummy title</a>
-                <a>Dummy date</a>
+                <a style={{fontWeight: "bold"}}>{props.announcementTitle}</a>
+                <a>{props.announcementDate}</a>
                 <a>{props.announcement}</a>
             </span>
         </Link>

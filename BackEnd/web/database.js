@@ -23,57 +23,17 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 a2 character,
                 a3 character
                 )`,
-<<<<<<< HEAD
             (err) => {
                 if (err) {
                     // Table already created
                 }else{
                     // Table just created, creating some rows
                     const insert = 'INSERT INTO user (user_id, user_name, password, name, student_id, email, account_type, status, a1, a2, a3) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
-                    db.run(insert, [1, "LB",md5("password1"),"Luke Birch", "532", "LukeBirch@chicagobooth.edu", "student", 'active']),
-                    db.run(insert, [2, "SJ",md5("password2"),"Seojoon Oh", "533", "Seojoon@chicagobooth.edu", "student", 'active']),
-                    db.run(insert, [3, "SR",md5("password3"),"Syd Reynolds", "534", "SydReynolds@chicagobooth.edu", "student", 'active'])
+                    db.run(insert, ["1", "LB",md5("password1"),"Luke Birch", "532", "LukeBirch@chicagobooth.edu", "student", 'active']),
+                    db.run(insert, ["2", "SJ",md5("password2"),"Seojoon Oh", "533", "Seojoon@chicagobooth.edu", "student", 'active']),
+                    db.run(insert, ["3", "SR",md5("password3"),"Syd Reynolds", "534", "SydReynolds@chicagobooth.edu", "student", 'active'])
                 }
             });
-=======
-      (err) => {
-        if (err) {
-          // Table already created
-        } else {
-          // Table just created, creating some rows
-          const insert =
-            "INSERT INTO user (user_name, password, name, student_id, email, account_type, status, a1, a2, a3) VALUES (?,?,?,?,?,?,?,?,?,?)";
-          db.run(insert, [
-            "LB",
-            md5("password1"),
-            "Luke Birch",
-            "532",
-            "LukeBirch@chicagobooth.edu",
-            "student",
-            "active",
-          ]),
-            db.run(insert, [
-              "SJ",
-              md5("password2"),
-              "Seojoon Oh",
-              "533",
-              "Seojoon@chicagobooth.edu",
-              "student",
-              "active",
-            ]),
-            db.run(insert, [
-              "SR",
-              md5("password3"),
-              "Syd Reynolds",
-              "534",
-              "SydReynolds@chicagobooth.edu",
-              "student",
-              "active",
-            ]);
-        }
-      }
-    );
->>>>>>> 9eb01d7ceba1d61aee0490ca540a29838e5c54dc
 
     db.run(
       `CREATE TABLE user_class (
@@ -90,9 +50,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           // Table just created, creating some rows
           const insert =
             "INSERT INTO user_class (user_id, class_id, grade) VALUES (?,?,?)";
-          db.run(insert, ["1", "2", "A"]),
-            db.run(insert, ["2", "3", "B"]),
-            db.run(insert, ["3", "1", "D"]);
+             db.run(insert, ["1", "2", "A"]),
+            db.run(insert, ["1", "3", "B"]),
+            db.run(insert, ["1", "1", "D"]);
         }
       }
     );
@@ -104,39 +64,20 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 description character,
                 capacity integer
                 )`,
-<<<<<<< HEAD
             (err) => {
                 if (err) {
                     // Table already created
                 }else{
                     // Table just created, creating some rows
                     const insert = 'INSERT INTO class (class_id, class_name, description, capacity) VALUES (?,?,?,?)'
-                    db.run(insert, [1, "WebDev","lego class", "30"]),
-                    db.run(insert, [2, "Algos","why do they make us take this?", "60"]),
-                    db.run(insert, [3, "Python","basics", "90"])
-                }
+                    db.run(insert, ["1", "WebDev","lego class", "30"]),
+                    db.run(insert, ["2", "Algos","why do they make us take this?", "60"]),
+                    db.run(insert, ["3", "Python","basics", "90"]);
+                } 
             });
         
-        db.run(
-            `CREATE TABLE class_teacher (
-=======
-      (err) => {
-        if (err) {
-          // Table already created
-        } else {
-          // Table just created, creating some rows
-          const insert =
-            "INSERT INTO class (class_name, description, capacity) VALUES (?,?,?)";
-          db.run(insert, ["WebDev", "lego class", "30"]),
-            db.run(insert, ["Algos", "why do they make us take this?", "60"]),
-            db.run(insert, ["Python", "basics", "90"]);
-        }
-      }
-    );
-
     db.run(
       `CREATE TABLE class_teacher (
->>>>>>> 9eb01d7ceba1d61aee0490ca540a29838e5c54dc
                 class_id integer,
                 teacher_id character, 
                 FOREIGN KEY (class_id) REFERENCES class(class_id),
@@ -174,6 +115,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
       `CREATE TABLE user_assignment (
                 user_id integer,
                 assignment_id integer,
+                class_id,
                 points integer,
                 content character, 
                 FOREIGN KEY (user_id) REFERENCES user(user_id),
@@ -185,8 +127,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         } else {
           // Table just created, creating some rows
           const insert =
-            "INSERT INTO user_assignment (user_id, assignment_id, points, content) VALUES (?,?,?,?)";
-          db.run(insert, ["1", "1", "100", "good job!"]);
+            "INSERT INTO user_assignment (user_id, assignment_id, class_id, points, content) VALUES (?,?,?,?)";
+          db.run(insert, ["1", "1", "1", "100", "good job!"]),
+          db.run(insert, ["1", "2", "1", "90", "Not bad!"]),
+          db.run(insert, ["1", "3", "1", "80", "Can do better"]);
         }
       }
     );
@@ -203,8 +147,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         } else {
           // Table just created, creating some rows
           const insert =
-            "INSERT INTO assignment (assignment_name, due_date) VALUES (?,?)";
-          db.run(insert, ["final project", "05/23/22"]);
+            "INSERT INTO assignment (assignment_id, assignment_name, due_date) VALUES (?,?)";
+          db.run(insert, ["1", "final project", "05/23/22"]),
+          db.run(insert, ["2", "mid-term project", "04/23/22"]),
+          db.run(insert, ["3", "first project", "05/23/22"]);
         }
       }
     );
@@ -223,7 +169,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           // Table just created, creating some rows
           const insert =
             "INSERT INTO class_announcement (class_id, announcement_id) VALUES (?,?)";
-          db.run(insert, ["1", "1"]);
+          db.run(insert, ["1", "1"]),
+          db.run(insert, ["2", "2"]),
+          db.run(insert, ["2", "3"]);
         }
       }
     );
@@ -242,11 +190,12 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           // Table just created, creating some rows
           const insert =
             "INSERT INTO announcement (announcement_id, announcement_title, announcement_detail, announcement_date) VALUES (?,?,?,?)";
-          db.run(insert, ["1", "1", "stuff", "05/20/22"]);
+          db.run(insert, ["1", "1", "stuff", "05/20/22"]),
+          db.run(insert, ["2", "Title2", "stuff", "05/20/22"]),
+          db.run(insert, ["3", "Title3", "stuff", "05/20/22"]);
         }
-      }
-    );
-  }
+      });
+    }
 });
 
 module.exports = db;

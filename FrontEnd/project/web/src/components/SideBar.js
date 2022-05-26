@@ -13,7 +13,9 @@ async function logout() {
 }
 
 function SideBar(props) {  
-
+    
+    console.log(props.courses[0])
+    
     return(
         <div id="sidebar">
             <div id="sidebar_button">

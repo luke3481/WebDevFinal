@@ -23,7 +23,7 @@ function SideCoursesMenu(props) {
         console.log(wid)
         setWid("0%")
     }
-
+    
     return(
         <div>
             <button type="button" id="btnstyle2" onClick={openNav}>

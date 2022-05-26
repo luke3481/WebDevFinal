@@ -9,9 +9,12 @@ import {
 
 function SubmitGrade(props) {  
 
+    const course = props.course
+    const courseId = props.courseId
+
     return(
         <div id="submitgrade">
-            <Link to="/Course/InputGrade"><button type="button" id="btnstyle4">Submit Grade</button></Link>
+            <Link to="/Course/InputGrade" state={{course: course, courseId: courseId}}><button type="button" id="btnstyle4">Submit Grade</button></Link>
         </div>
     );
 }

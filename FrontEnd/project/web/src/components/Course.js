@@ -10,6 +10,7 @@ import Grades from "./Grades";
 import InputGrade from "./InputGrade";
 import Assignments2 from "./Assignments2";
 import InputAssignment from "./InputAssignment";
+import SubmitAssignment from "./SubmitAssignment";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -35,10 +36,10 @@ function Course() {
             <div id="sidebar2">
                 <p>{course}</p>
                 <Link to="/Course/Announcements" state={{course: course, courseId: courseId}} >Announcements</Link>
-                <Link to="/Course/Assignments">Assignments</Link>
-                <Link to="/Course/Grades">Grades</Link>
-                <Link to="/Course/CreateCourse"><button type="button" id="btnstyle3">Create Course</button></Link>
-                <Link to="/Course/CreateAnnouncement"><button type="button" id="btnstyle3">Create Announcement</button></Link>
+                <Link to="/Course/Assignments" state={{course: course, courseId: courseId}} >Assignments</Link>
+                <Link to="/Course/Grades" state={{course: course, courseId: courseId}} >Grades</Link>
+                <Link to="/Course/CreateCourse" state={{course: course, courseId: courseId}} ><button type="button" id="btnstyle3">Create Course</button></Link>
+                <Link to="/Course/CreateAnnouncement" state={{course: course, courseId: courseId}} ><button type="button" id="btnstyle3">Create Announcement</button></Link>
             </div>
             <Routes>
                 <Route path="*" element={<CourseHome />} />
@@ -49,6 +50,7 @@ function Course() {
                 <Route path="/Grades" element={<Grades />} />
                 <Route path="/InputGrade" element={<InputGrade />} />
                 <Route path="/Assignments" element={<Assignments2 />} />
+                <Route path="/SubmitAssignment" element={<SubmitAssignment />} />
                 <Route path="/InputAssignment" element={<InputAssignment />} />
             </Routes>
         </div>

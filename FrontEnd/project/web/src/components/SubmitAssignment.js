@@ -8,10 +8,13 @@ import {
 
 
 function SubmitAssignment(props) {  
-
+    
+    const course = props.course
+    const courseId = props.courseId
+    
     return(
         <div id="submitassignment">
-            <Link to="/Course/InputAssignment"><button type="button" id="btnstyle4">Submit</button></Link>
+            <Link to="/Course/InputAssignment" state={{course: course, courseId: courseId}}><button type="button" id="btnstyle4">Submit</button></Link>
         </div>
     );
 }
