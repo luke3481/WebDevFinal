@@ -75,7 +75,6 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     db.run(insert, ["3", "Python","basics", "90"]);
                 } 
             });
-        
     db.run(
       `CREATE TABLE class_teacher (
                 class_id integer,
