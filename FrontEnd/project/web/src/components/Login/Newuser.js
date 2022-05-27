@@ -37,12 +37,11 @@ function Newuser({ setLogindisplay, setUserdata }) {
   }
 
   return (
-    <div id="main">
+    <div id="newusermain">
       <div id="forgotpassword">
         <p>
-          <h2>New User: </h2>
+          <h2>New User </h2>
         </p>
-        <br></br>
         <form onSubmit={newUser}>
           <label for="user_name">User Name: </label>
           <br />
@@ -52,6 +51,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="user_name"
             value={formValues.user_name}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -64,6 +64,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="name"
             value={formValues.name}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -76,6 +77,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="email"
             value={formValues.email}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -88,11 +90,12 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="student_id"
             value={formValues.student_id}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
 
-          <label for="password">password: </label>
+          <label for="password">Password: </label>
           <br />
           <input
             type="text"
@@ -100,6 +103,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="password"
             value={formValues.password}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -112,6 +116,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="confirmpassword"
             value={formValues.confirmpassword}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -139,6 +144,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="a1"
             value={formValues.a1}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -151,6 +157,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="a2"
             value={formValues.a2}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />
@@ -163,6 +170,7 @@ function Newuser({ setLogindisplay, setUserdata }) {
             name="a3"
             value={formValues.a3}
             onChange={handleChanges}
+            required
           />
           <br />
           <br />

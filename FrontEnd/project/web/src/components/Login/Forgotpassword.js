@@ -1,6 +1,6 @@
 function Forgotpassword({ setLogindisplay }) {
   return (
-    <div id="main">
+    <div id="newusermain">
       <div id="forgotpassword">
         <p>
           <h2>
@@ -32,17 +32,8 @@ function Forgotpassword({ setLogindisplay }) {
         </form>
         <br />
         <br />
-        <form>
-          <label for="resetpassword">
-            Reset Password **hide this section until successful submission of
-            above**
-          </label>
-          <br />
-          <input type="text" id="restpassword" name="resetpassword" />
-          <br />
-          <br />
-          <input type="submit" />
-        </form>
+        <br />
+        <br />
         <button
           type="submit"
           id="backtologin"
@@ -58,3 +49,15 @@ function Forgotpassword({ setLogindisplay }) {
 }
 
 export default Forgotpassword;
+
+// <form>
+//   <label for="resetpassword">
+//     Reset Password **hide this section until successful submission of
+//     above**
+//   </label>
+//   <br />
+//   <input type="text" id="restpassword" name="resetpassword" />
+//   <br />
+//   <br />
+//   <input type="submit" />
+// </form>;
