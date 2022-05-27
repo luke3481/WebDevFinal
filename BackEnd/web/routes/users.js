@@ -40,13 +40,51 @@ router.post("/login", (req, res) => {
   let sql = "select * from user where user_name = ? and password = ?";
   let params = [username, hashedPassword];
 
-  db.get(sql, params, (err, rows) => {
+  db.get(sql, params, (err, row) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
     res.json({
       message: "success",
-      data: rows,
+      data: row,
+    });
+  });
+});
+
+router.post("/newuser", (req, res) => {
+  const {
+    user_name,
+    name,
+    email,
+    student_id,
+    password,
+    account_type,
+    a1,
+    a2,
+    a3,
+  } = req.body;
+  let sql =
+    "INSERT INTO user (user_name, name, email, student_id, password, account_type, status, a1, a2, a3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  let params = [
+    user_name,
+    name,
+    email,
+    student_id,
+    password,
+    account_type,
+    "active",
+    a1,
+    a2,
+    a3,
+  ];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
     });
   });
 });
