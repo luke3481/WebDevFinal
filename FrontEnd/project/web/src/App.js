@@ -36,7 +36,7 @@ function AppCopy() {
   const [courses, setCourses] = useState(["WebDev", "Algos", "Python"]);
 
   // Retrieve user_id from token
-  const user_id = "1";
+  const user_id = userdata.user_id;
 
   // Retrieve class_ids tied to user_id
   useEffect(() => {

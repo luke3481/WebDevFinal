@@ -1,4 +1,4 @@
-function Forgotpassword({ setLogindisplay }) {
+export default function Forgotpassword({ setLogindisplay }) {
   return (
     <div id="newusermain">
       <div id="forgotpassword">
@@ -47,8 +47,6 @@ function Forgotpassword({ setLogindisplay }) {
     </div>
   );
 }
-
-export default Forgotpassword;
 
 // <form>
 //   <label for="resetpassword">

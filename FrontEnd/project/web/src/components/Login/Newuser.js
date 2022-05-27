@@ -13,7 +13,7 @@ const initialFormValues = {
   a3: "",
 };
 
-function Newuser({ setLogindisplay, setUserdata }) {
+export default function Newuser({ setLogindisplay, setUserdata }) {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   function handleChanges(e) {
@@ -193,5 +193,3 @@ function Newuser({ setLogindisplay, setUserdata }) {
     </div>
   );
 }
-
-export default Newuser;
