@@ -20,7 +20,7 @@ const app = express();
 //idk what these are but I'm afraid to delete them
 app.use(logger("dev"));
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //middle ware that handles calls to the databases
