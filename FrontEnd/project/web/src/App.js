@@ -133,6 +133,7 @@ function AppCopy() {
         <SideBar
           courses={["WebDev", "Algos", "Python"]}
           courseIds={["1", "2", "3"]}
+          userdata={userdata}
         />
         <Routes>
           <Route path="*" element={<Home />} />

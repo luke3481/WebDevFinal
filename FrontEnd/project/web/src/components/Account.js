@@ -3,13 +3,7 @@ import Profile from "./Profile";
 import Password from "./Password";
 import Security from "./Security";
 import AccountHome from "./AccountHome";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Account(props) {
   return (
