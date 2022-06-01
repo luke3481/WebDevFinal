@@ -30,12 +30,16 @@ function AppCopy() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const [courseIds, setCourseIds] = useState(["1", "2", "3"]);
   const [oldCourseIds, setOldCourseIds] = useState([]);
+
   const [courses, setCourses] = useState(["test", "Algos", "Python"]);
   const [oldCourses, setOldCourses] = useState([]);
   // Retrieve user_id from token
   const user_id = "1";
+
+
   // Retrieve class_ids tied to user_id
   const getData1 = async () => {
     try {
@@ -57,9 +61,11 @@ function AppCopy() {
           tempCourseIds.push(actualData.data[i].class_id);
         }
       }
+      console.log('tempCId', tempCourseIds)
       setOldCourseIds(courseIds);
       setCourseIds(tempCourseIds);
       setError(null);
+
     } catch (err) {
       setError(err.message);
       setData(null);
@@ -67,15 +73,17 @@ function AppCopy() {
       setLoading(false);
     }
   };
+
+
   let checkData1 = (old_courseIds, new_courseIds) => {
     let check = 0;
-    console.log('oci', old_courseIds.length)
-    console.log('nci', new_courseIds.length)
+    console.log('oci', old_courseIds)
+    console.log('nci', new_courseIds)
     if (old_courseIds.length == new_courseIds.length) {
       for (var i = 0; i < old_courseIds.length; i++) {
         console.log('oc', old_courseIds[i]);
         console.log('n', new_courseIds[i]);
-        if (old_courseIds[i] != new_courseIds[i]) {
+        if (old_courseIds[i] !== new_courseIds[i]) {
           check = 1;
           {break};
         }
@@ -83,11 +91,12 @@ function AppCopy() {
     } else {
       check = 1;
     }
-    console.log('c', check);
     if (check == 1) {
       getData1();
     }
   };
+
+
   const getData2 = async () => {
     try {
       const response = await fetch("http://localhost:8080/class/list");
@@ -117,6 +126,7 @@ function AppCopy() {
       setLoading(false);
     }
   };
+
   let checkData2 = (old_courses, new_courses) => {
     let check = 0;
     if (old_courses.length == new_courses.length) {
@@ -135,13 +145,18 @@ function AppCopy() {
       getData2();
     }
   };
+
+
   useEffect(() => {
     checkData1(oldCourseIds, courseIds);
   }, [courseIds]);
+
+
   // Retrieve class_names tied to class_ids
   useEffect(() => {
     checkData2(oldCourses, courses);
   }, [courses]);
+
 
   if (!localStorage.getItem("token")) {
     return <Login setUserdata={setUserdata} />;
@@ -151,8 +166,8 @@ function AppCopy() {
     <div className="App">
       <div className="container">
         <SideBar
-          courses={["WebDev", "Algos", "Python"]}
-          courseIds={["1", "2", "3"]}
+          courses={courses}
+          courseIds={courseIds}
           userdata={userdata}
         />
         <Routes>
