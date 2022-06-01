@@ -89,4 +89,53 @@ router.post("/newuser", (req, res) => {
   });
 });
 
+//POSTS for Account --> Edit Profile page
+router.post("/editname", (req, res) => {
+  const { name, user_id } = req.body;
+  let sql = "UPDATE user SET name = ? WHERE user_id = ?";
+  let params = [name, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
+router.post("/editemail", (req, res) => {
+  const { email, user_id } = req.body;
+  let sql = "UPDATE user SET email = ? WHERE user_id = ?";
+  let params = [email, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
+router.post("/editstudentid", (req, res) => {
+  const { student_id, user_id } = req.body;
+  let sql = "UPDATE user SET student_id = ? WHERE user_id = ?";
+  let params = [student_id, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
 module.exports = router;

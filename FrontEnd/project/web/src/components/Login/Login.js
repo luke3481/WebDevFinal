@@ -5,6 +5,7 @@ import Forgotpassword from "./Forgotpassword";
 import Newuser from "./Newuser";
 import Loginform from "./Loginform";
 import md5 from "md5";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function Login({ setUserdata }) {
   const [username, setUserName] = useState();
@@ -80,6 +81,12 @@ export default function Login({ setUserdata }) {
       </div>
     );
   }
+
+  <Routes>
+    <Route path="*" element={<Loginform />} />
+    <Route path="/Newuser" element={<Newuser />} />
+    <Route path="/Forgotpassword" element={<Forgotpassword />} />
+  </Routes>;
 }
 
 Login.propTypes = {
