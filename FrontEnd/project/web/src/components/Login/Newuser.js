@@ -103,7 +103,10 @@ export default function Newuser({ setLogindisplay, setUserdata }) {
             name="password"
             value={formValues.password}
             onChange={handleChanges}
+            pattern="(?=.*\d)(?=.*[!@#$%^&*]).{5,}"
+            autofocus
             required
+            title="Must be 5 characters with at least 1 number and 1 symbol"
           />
           <br />
           <br />

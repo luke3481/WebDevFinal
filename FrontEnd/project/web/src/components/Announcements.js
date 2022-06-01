@@ -1,23 +1,22 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
 import Announcement from "./Announcement";
 import ClassTile from "./ClassTile";
 import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-	useLocation,
-} from 'react-router-dom';
- 
-
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
 function Announcements(props) {
+    const location = useLocation();
+    const courseId = location.state.courseId;
+    const course = location.state.course;
 
-    const location = useLocation()
-    const courseId = location.state.courseId
-    const course = location.state.course
+  
 
     const [announcementIds, setAnnouncementIds] = useState([]);
     const [oldAnnouncementIds, setOldAnnouncementIds] = useState(['1']);
@@ -31,15 +30,13 @@ function Announcements(props) {
     const [announcementDates, setAnnouncementDates] = useState(['1', '2']);
     const [oldAnnouncementDates, setOldAnnouncementDates] = useState([]);
 
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     // Does state passing work?
     console.log('cccid',courseId);
     console.log('cccc',course);
     
 
+    
 
 
     const getData1 = async () => {
@@ -72,12 +69,9 @@ function Announcements(props) {
             setOldAnnouncementIds(announcementIds);
             setAnnouncementIds(tempAnnouncementIds);
             
-            setError(null);
+           
         } catch (err) {
-            setError(err.message);
-            setData(null);
-        } finally {
-            setLoading(false);
+            console.log(err.message);
         }
     }
     
@@ -145,12 +139,9 @@ function Announcements(props) {
             
             console.log('announcement', announcements); 
             
-            setError(null);
+            
         } catch (err) {
-            setError(err.message);
-            setData(null);
-        } finally {
-            setLoading(false);
+            console.log(err.message)
         }
     }
     
@@ -178,18 +169,47 @@ function Announcements(props) {
         checkData2(announcements, oldAnnouncements);           
     }, [announcements]);
 
-    return(
-        <div id="announcements">
-            <div id="top_border"></div>
-            <Announcement announcement={announcements[0]} announcementTitle={announcementTitles[0]} announcementDate={announcementDates[0]} course={course} courseId={courseId} />
-            <Announcement announcement={announcements[1]} announcementTitle={announcementTitles[1]} announcementDate={announcementDates[1]} course={course} courseId={courseId} />
-            <Announcement announcement={announcements[2]} announcementTitle={announcementTitles[2]} announcementDate={announcementDates[2]} course={course} courseId={courseId} />
-            <Announcement announcement={announcements[3]} announcementTitle={announcementTitles[3]} announcementDate={announcementDates[3]} course={course} courseId={courseId} />
-            <Announcement announcement={announcements[4]} announcementTitle={announcementTitles[4]} announcementDate={announcementDates[4]} course={course} courseId={courseId} />
-        </div>
-    );
+
+  return (
+    <div id="announcements">
+      <div id="top_border"></div>
+      <Announcement
+        announcement={announcements[0]}
+        announcementTitle={announcementTitles[0]}
+        announcementDate={announcementDates[0]}
+        course={course}
+        courseId={courseId}
+      />
+      <Announcement
+        announcement={announcements[1]}
+        announcementTitle={announcementTitles[1]}
+        announcementDate={announcementDates[1]}
+        course={course}
+        courseId={courseId}
+      />
+      <Announcement
+        announcement={announcements[2]}
+        announcementTitle={announcementTitles[2]}
+        announcementDate={announcementDates[2]}
+        course={course}
+        courseId={courseId}
+      />
+      <Announcement
+        announcement={announcements[3]}
+        announcementTitle={announcementTitles[3]}
+        announcementDate={announcementDates[3]}
+        course={course}
+        courseId={courseId}
+      />
+      <Announcement
+        announcement={announcements[4]}
+        announcementTitle={announcementTitles[4]}
+        announcementDate={announcementDates[4]}
+        course={course}
+        courseId={courseId}
+      />
+    </div>
+  );
 }
-
-
 
 export default Announcements;
