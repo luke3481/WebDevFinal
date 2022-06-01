@@ -35,6 +35,7 @@ router.get("/:user_name", (req, res, next) => {
   });
 });
 
+//POSTS for Login Pages
 router.post("/login", (req, res) => {
   const { username, hashedPassword } = req.body;
   let sql = "select * from user where user_name = ? and password = ?";
@@ -72,7 +73,7 @@ router.post("/newuser", (req, res) => {
     student_id,
     password,
     account_type,
-    "active",
+    "inactive",
     a1,
     a2,
     a3,
@@ -89,7 +90,24 @@ router.post("/newuser", (req, res) => {
   });
 });
 
-//POSTS for Account --> Edit Profile page
+//Retrieve user data
+router.post("/userdata", (req, res) => {
+  const { user_id } = req.body;
+  let sql = "SELECT name, email, student_id FROM user WHERE user_id = ?";
+  let params = [user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
+//Edit the user's name
 router.post("/editname", (req, res) => {
   const { name, user_id } = req.body;
   let sql = "UPDATE user SET name = ? WHERE user_id = ?";
@@ -106,6 +124,7 @@ router.post("/editname", (req, res) => {
   });
 });
 
+//Edit the user's email
 router.post("/editemail", (req, res) => {
   const { email, user_id } = req.body;
   let sql = "UPDATE user SET email = ? WHERE user_id = ?";
@@ -122,10 +141,82 @@ router.post("/editemail", (req, res) => {
   });
 });
 
+//Edit the user's student id
 router.post("/editstudentid", (req, res) => {
   const { student_id, user_id } = req.body;
   let sql = "UPDATE user SET student_id = ? WHERE user_id = ?";
   let params = [student_id, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
+//change password (Account -> Change Password)
+router.post("/changepassword", (req, res) => {
+  const { password, user_id, hashedNewpassword } = req.body;
+  let sql = "SELECT password FROM user WHERE password = ? AND user_id = ?";
+  let params = [password, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    if (!row) {
+      res.json({
+        failure: "failure",
+      });
+    } else {
+      let sql = "UPDATE user SET password = ? WHERE user_id = ?";
+      let params2 = [hashedNewpassword, user_id];
+
+      db.run(sql, params2, (err, row) => {
+        if (err) {
+          res.status(400).json({ error: err.message });
+        }
+        res.json({
+          message: "success",
+          data: row,
+        });
+      });
+    }
+  });
+});
+
+//validate a user's password before allowing them to update security questions
+router.post("/validatepassword", (req, res) => {
+  const { password, user_id } = req.body;
+  let sql = "SELECT user_name FROM user WHERE password = ? AND user_id = ?";
+  let params = [password, user_id];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    if (!row) {
+      res.json({
+        failure: "failure",
+      });
+    } else {
+      res.json({
+        message: "success",
+        data: row,
+      });
+    }
+  });
+});
+
+//Edit the user's security questions
+router.post("/updatesec", (req, res) => {
+  const { sec1, sec2, sec3, user_id } = req.body;
+  let sql = "UPDATE user SET a1 = ?, a2 = ?, a3 =? WHERE user_id = ?";
+  let params = [sec1, sec2, sec3, user_id];
 
   db.get(sql, params, (err, row) => {
     if (err) {

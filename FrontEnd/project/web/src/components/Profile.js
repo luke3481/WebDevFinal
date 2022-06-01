@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
-import Announcement from "./Announcement";
-import ClassTile from "./ClassTile";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function Profile() {
   const userdata = localStorage.getItem("token");
@@ -136,7 +132,7 @@ export default function Profile() {
         <input type="submit" />
       </form>
       <br />
-      <div class="message3">{message3}</div>
+      <div class="message">{message3}</div>
     </div>
   );
 }
