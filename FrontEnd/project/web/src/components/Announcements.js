@@ -20,18 +20,24 @@ function Announcements(props) {
     const course = location.state.course
 
     const [announcementIds, setAnnouncementIds] = useState([]);
+    const [oldAnnouncementIds, setOldAnnouncementIds] = useState(['1']);
 
-    const [announcementTitles, setAnnouncementTitles] = useState([]);
-    const [announcements, setAnnouncements] = useState([]);
-    const [announcementDates, setAnnouncementDates] = useState([]);
+    const [announcementTitles, setAnnouncementTitles] = useState(['1', '2']);
+    const [oldAnnouncementTitles, setOldAnnouncementTitles] = useState([]);
+
+    const [announcements, setAnnouncements] = useState(['1', '2']);
+    const [oldAnnouncements, setOldAnnouncements] = useState([]);
+
+    const [announcementDates, setAnnouncementDates] = useState(['1', '2']);
+    const [oldAnnouncementDates, setOldAnnouncementDates] = useState([]);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     // Does state passing work?
-    console.log(courseId);
-    console.log(course);
+    console.log('cccid',courseId);
+    console.log('cccc',course);
     
 
 
@@ -48,23 +54,23 @@ function Announcements(props) {
             let actualData = await response.json();  
             
             const length = parseInt(actualData.data.length);
+            console.log('ad', actualData)
             
             
             
             // Parse announcement id data
             let tempAnnouncementIds = [];
             for (var i = 0; i < length; i++) {
-                // Debugging - Tejas
-                console.log(courseId);
-                console.log(actualData.data[i].class_id);
-                console.log(i);
+                console.log('cId', courseId);
+                console.log('cdId', actualData.data[i].class_id);
                 if (new String(courseId).valueOf() === new String(actualData.data[i].class_id).valueOf()) {
-                    console.log(i);
                     tempAnnouncementIds.push(actualData.data[i].announcement_id);
+                    console.log('taid', tempAnnouncementIds);
                 }
             }
             
-            return tempAnnouncementIds;
+            setOldAnnouncementIds(announcementIds);
+            setAnnouncementIds(tempAnnouncementIds);
             
             setError(null);
         } catch (err) {
@@ -75,12 +81,28 @@ function Announcements(props) {
         }
     }
     
+    let checkData1 = (old_announceId, new_announceId) => {
+        let check = 0;
+        if (old_announceId.length == new_announceId.length) {
+          for (var i = 0; i < old_announceId.length; i++) {
+            console.log('oa', old_announceId);
+            console.log('na', new_announceId);
+            if (old_announceId[i] != new_announceId[i]) {
+              check = 1;
+              {break};
+            }
+          }
+        } else {
+          check = 1;
+        }
+        if (check == 1) {
+          getData1();
+        }
+      };
+
     // Retrieve announcement ids tied to course ids
     useEffect(() => {
-        // Solution - Tejas
-        const result1 = getData1()
-        result1.then(res => setAnnouncementIds(res))
-        console.log(announcementIds);
+        checkData1(oldAnnouncementIds, announcementIds);
     }, [announcementIds]);
     
     // Retrieve announcement info tied to announce ids
@@ -94,7 +116,7 @@ function Announcements(props) {
             }
             // Pull announcement data 
             let actualData = await response.json();  
-            console.log(actualData)
+            console.log('ad2', actualData)
             
             const length = parseInt(actualData.data.length);
             
@@ -110,11 +132,18 @@ function Announcements(props) {
                 }
             }
             
-            var output = {'announcementTitles' : tempAnnouncementTitles, 'announcements' : tempAnnouncements, 'announcementDates' : tempAnnouncementDates }
+
+            setOldAnnouncementTitles(announcementTitles);
+            setAnnouncementTitles(tempAnnouncementTitles);
+
+            setOldAnnouncements(announcements);
+            setAnnouncements(tempAnnouncements);
+
+            setOldAnnouncementDates(announcementDates);
+            setAnnouncementDates(tempAnnouncementDates);
             
-            return output
             
-            console.log(announcements); 
+            console.log('announcement', announcements); 
             
             setError(null);
         } catch (err) {
@@ -125,17 +154,29 @@ function Announcements(props) {
         }
     }
     
+    let checkData2 = (old_announce, new_announce) => {
+        let check = 0;
+        if (old_announce.length == new_announce.length) {
+          for (var i = 0; i < old_announce.length; i++) {
+            console.log('oa', old_announce);
+            console.log('na', new_announce);
+            if (old_announce[i] != new_announce[i]) {
+              check = 1;
+              {break};
+            }
+          }
+        } else {
+          check = 1;
+        }
+        if (check == 1) {
+          getData2();
+        }
+      };
+
+
     useEffect(() => {
-        // Solution - Tejas
-        const result2 = getData2()
-        result2.then(res => {
-            setAnnouncementTitles(res.announcementTitles)
-            setAnnouncements(res.announcements)
-            setAnnouncementDates(res.announcementDates)
-        })
-           
-        console.log(announcementTitles);
-    }, [announcements, announcementTitles, announcementDates]);
+        checkData2(announcements, oldAnnouncements);           
+    }, [announcements]);
 
     return(
         <div id="announcements">
