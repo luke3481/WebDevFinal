@@ -35,10 +35,11 @@ router.get("/:user_name", (req, res, next) => {
   });
 });
 
-//POSTS for Login Pages
+//Login
 router.post("/login", (req, res) => {
   const { username, hashedPassword } = req.body;
-  let sql = "select * from user where user_name = ? and password = ?";
+  let sql =
+    "select user_id, user_name, student_id, name, account_type, status from user where user_name = ? and password = ?";
   let params = [username, hashedPassword];
 
   db.get(sql, params, (err, row) => {
@@ -52,6 +53,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+//New user
 router.post("/newuser", (req, res) => {
   const {
     user_name,
@@ -78,6 +80,47 @@ router.post("/newuser", (req, res) => {
     a2,
     a3,
   ];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "success",
+      data: row,
+    });
+  });
+});
+
+//Validate with security questions
+router.post("/validateques", (req, res) => {
+  const { user_name, a1, a2, a3 } = req.body;
+  let sql =
+    "select user_id from user where user_name = ? and a1 = ? and a2 = ? and a3 = ?";
+  let params = [user_name, a1, a2, a3];
+
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    if (!row) {
+      res.json({
+        failure: "failure",
+      });
+    } else {
+      res.json({
+        message: "success",
+        data: row["user_id"],
+      });
+    }
+  });
+});
+
+//Reset password
+router.post("/resetpassword", (req, res) => {
+  const { new_password, user_id } = req.body;
+  let sql = "UPDATE user set password = ? WHERE user_id = ?";
+  let params = [new_password, user_id];
 
   db.get(sql, params, (err, row) => {
     if (err) {
