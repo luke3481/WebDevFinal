@@ -7,12 +7,10 @@ function SideCoursesMenu(props) {
   const [wid, setWid] = useState("0%");
 
   const openNav = () => {
-    console.log(wid);
     setWid("20%");
   };
 
   const closeNav = () => {
-    console.log(wid);
     setWid("0%");
   };
 

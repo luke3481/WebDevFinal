@@ -8,16 +8,14 @@ async function logout() {
 }
 
 function SideBar(props) {
-  console.log(props.courses[0]);
-
   const userdata = localStorage.getItem("token");
   const parsedData = JSON.parse(userdata);
   const account_type = parsedData["account_type"];
 
-  if (account_type === "admin") {
-    const settings = document.getElementById("settingsbutton");
-    settings.hidden = false;
-  }
+  // if (account_type === "admin") {
+  //   const settings = document.getElementById("settingsbutton");
+  //   settings.hidden = false;
+  // }
 
   return (
     <div id="sidebar">
@@ -44,7 +42,7 @@ function SideBar(props) {
           courses={props.courses}
           courseIds={props.courseIds}
         />
-        <button type="button" class="btnstyle2" id="settingsbutton" hidden>
+        <button type="button" class="btnstyle2" id="settingsbutton">
           <Link to="/Settings">
             <img src={require("../imgs/settings.png")} />
           </Link>

@@ -470,8 +470,7 @@ a {
 
 #assignments li {
   padding-left: 25px;
-  padding-bottom: 10px;
-  line-height: 100%;
+  line-height: 120%;
   list-style: none;
   background-image: url("./imgs/assignment.png");
   background-size: 15px;

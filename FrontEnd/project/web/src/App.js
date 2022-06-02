@@ -17,11 +17,9 @@ import Teacherassignments from "./components/Teacherassignments";
 import Home from "./webPages/Home";
 import Adminhome from "./components/Adminhome";
 import Course from "./webPages/Course";
-import Invoices from "./components/invoices";
 import Login from "./components/Login/Login";
 import Account from "./webPages/Account";
 import Settings from "./webPages/Settings";
-import useToken from "./components/useToken";
 
 function AppCopy() {
   // Retrieve class_ids tied to user_id
@@ -291,29 +289,60 @@ function AppCopy() {
     return <Login setUserdata={setUserdata} />;
   }
 
-  return (
-    <div className="App">
-      <div className="container">
-        <SideBar courses={courses} courseIds={courseIds} userdata={userdata} />
-        <Routes>
-          <Route path="*" element={<Home />} />
-          {/* below is activated and above is inactivated if admin account */}
-          {/* <Route path="/" element={<Adminhome />} /> */}
-          <Route path="/Account/*" element={<Account />} />
-          <Route path="/Course/*" element={<Course />} />
-          <Route path="/Settings/*" element={<Settings />} />
-          <Route path="/LogIn" element={<Login />} />
-        </Routes>
-        <Assignments
-          Ass1={assignmentNames[0]}
-          Ass2={assignmentNames[1]}
-          Ass3={assignmentNames[2]}
-        />
-        {/* Below needs to be shown instead of above for teacher accounts */}
-        {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
+  const userinfo = localStorage.getItem("token");
+  const parsedData = JSON.parse(userinfo);
+  const account_type = parsedData["account_type"];
+
+  if (account_type == "student") {
+    return (
+      <div className="App">
+        <div className="container">
+          <SideBar
+            courses={courses}
+            courseIds={courseIds}
+            userdata={userdata}
+          />
+          <Routes>
+            <Route path="*" element={<Home />} />
+            <Route path="/Account/*" element={<Account />} />
+            <Route path="/Course/*" element={<Course />} />
+            <Route path="/Settings/*" element={<Settings />} />
+            <Route path="/LogIn" element={<Login />} />
+          </Routes>
+          <Assignments
+            Ass1={assignmentNames[0]}
+            Ass2={assignmentNames[1]}
+            Ass3={assignmentNames[2]}
+          />
+          {/* Below needs to be shown instead of above for teacher accounts */}
+          {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (account_type == "admin") {
+    return (
+      <div className="App">
+        <div className="container">
+          <SideBar
+            courses={courses}
+            courseIds={courseIds}
+            userdata={userdata}
+          />
+          <Routes>
+            <Route path="/" element={<Adminhome />} />
+            <Route path="/Account/*" element={<Account />} />
+            <Route path="/Course/*" element={<Course />} />
+            <Route path="/Settings/*" element={<Settings />} />
+            <Route path="/LogIn" element={<Login />} />
+          </Routes>
+          {/* Below needs to be shown instead of above for teacher accounts */}
+          {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default AppCopy;
