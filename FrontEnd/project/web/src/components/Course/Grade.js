@@ -1,4 +1,4 @@
-import SubmitGrade from "./SubmitGrade";
+import SubmitGrade from "../SubmitGrade";
 import {
 	BrowserRouter as Router,
 	Routes,

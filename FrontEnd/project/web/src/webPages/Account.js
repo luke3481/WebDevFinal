@@ -1,8 +1,8 @@
 import React from "react";
-import Profile from "./Profile";
-import Password from "./Password";
-import Security from "./Security";
-import AccountHome from "./AccountHome";
+import Profile from "../components/Account/Profile";
+import Password from "../components/Account/Password";
+import Security from "../components/Account/Security";
+import AccountHome from "../components/Account/AccountHome";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Account(props) {

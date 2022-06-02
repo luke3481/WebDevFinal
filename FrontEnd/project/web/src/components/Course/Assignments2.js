@@ -1,8 +1,6 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
 import Assignment from "./Assignment";
-import ClassTile from "./ClassTile";
 import SubmitAssignment from "./SubmitAssignment";
 import {
 	BrowserRouter as Router,
@@ -21,18 +19,20 @@ function Assignments2(props) {
     const course = location.state.course
     
     const [assignmentIds, setAssignmentIds] = useState([]);
+    const [oldAssignmentIds, setOldAssignmentIds] = useState(['1']);
     
     const [assignmentNames, setAssignmentNames] = useState([]);
+    const [oldAssignmentNames, setOldAssignmentNames] = useState(['1']);
+
     const [assignmentDates, setAssignmentDates] = useState([]);
+    const [oldAssignmentDates, setOldAssignmentDates] = useState(['1']);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     
-    // Does state passing work?
-    console.log(courseId);
-    console.log(course);
     
+
     // Retrieve user_id from token
     const user_id = '1';
 
@@ -54,15 +54,13 @@ function Assignments2(props) {
             let tempAssignmentIds = [];
             for (var i = 0; i < length; i++) {
                 if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
-                    console.log("seojoon")
                     tempAssignmentIds.push(actualData.data[i].assignment_id)
                 }
             }
-            
-            // Debugging
-            console.log(tempAssignmentIds)
-            
-            return tempAssignmentIds;
+            console.log('tai', tempAssignmentIds);
+
+            setOldAssignmentIds(assignmentIds);
+            setAssignmentIds(tempAssignmentIds);
             
             setError(null);
         } catch (err) {
@@ -72,12 +70,28 @@ function Assignments2(props) {
             setLoading(false);
         }
     }
+
+    let checkData1 = (old_data, new_data, num) => {
+        let check = 0;
+        if (old_data.length == new_data.length) {
+          for (var i = 0; i < old_data.length; i++) {
+            if (old_data[i] != new_data[i]) {
+              check = 1;
+              {break};
+            }
+          }
+        } else {
+          check = 1;
+        }
+        if (check == 1) {
+            getData1();
+        }
+      };
     
     useEffect(() => {
-        // Solution - Tejas
-        const result1 = getData1()
-        result1.then(res => setAssignmentIds(res))
-        console.log(assignmentIds); 
+        console.log('assignment IDS useEffect');
+        checkData1(oldAssignmentIds, assignmentIds);
+        console.log('assignmentIDs', assignmentIds);
     }, [assignmentIds]);
     
     // Retrieve assignment info tied to assignment ids
@@ -93,27 +107,33 @@ function Assignments2(props) {
             let actualData = await response.json();  
             
             // Debugging - Data successfully retrieved but empty
-            console.log(actualData)
+            console.log('ad2222', actualData);
+            console.log('ad', actualData.data[0]['assignment_id']);
+            console.log('assignmIDscheck', assignmentIds);
+            console.log('assignmentIDs', assignmentIds);
             
             const length = parseInt(actualData.data.length);
             
             // Parse assignment data
             let tempAssignmentNames = [];
             let tempAssignmentDates = [];
+            
             for (var i = 0; i < length; i++) {
-                if (assignmentIds.includes(actualData.data[i].assignment_id)) {
+                if (assignmentIds.includes(actualData.data[i]['assignment_id'])) {
                     
-                    tempAssignmentNames.push(actualData.data[i].assignment_name)
-                    tempAssignmentDates.push(actualData.data[i].due_date)
+                    tempAssignmentNames.push(actualData.data[i]['assignment_name'])
+                    tempAssignmentDates.push(actualData.data[i]['due_date'])
                 }
             }
             
-            var output = {'assignmentNames' : tempAssignmentNames, 'assignmentDates' : tempAssignmentDates }
+            console.log('tan', tempAssignmentNames);
+
+            setOldAssignmentNames(assignmentNames);
+            setAssignmentNames(tempAssignmentNames);
+
+            setOldAssignmentDates(assignmentDates);
+            setAssignmentDates(tempAssignmentDates);
             
-            return output
-            
-            // Debugging
-            console.log(tempAssignmentNames)
             
             setError(null);
         } catch (err) {
@@ -123,15 +143,32 @@ function Assignments2(props) {
             setLoading(false);
         }
     }
+    
+    let checkData2 = (old_data, new_data, num) => {
+        let check = 0;
+        console.log('od', old_data);
+        console.log('nd', new_data);
+        if (old_data.length == new_data.length) {
+          for (var i = 0; i < old_data.length; i++) {
+            console.log('oa', old_data);
+            console.log('na', new_data);
+            if (old_data[i] != new_data[i]) {
+              check = 1;
+              {break};
+            }
+          }
+        } else {
+          check = 1;
+        }
+        if (check == 1) {
+            getData2();
+        }
+      };
 
     useEffect(() => {
-        // Solution - Tejas
-        const result2 = getData2()
-        result2.then(res => {
-            setAssignmentNames(res.assignmentNames)
-            setAssignmentDates(res.assignmentDates)
-        })
-    }, [assignmentNames, assignmentDates]);
+        console.log('assignment names');
+        checkData2(oldAssignmentNames, assignmentNames);
+    }, [assignmentIds]);
 
     return(
         <div id="assignments2">

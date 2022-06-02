@@ -1,7 +1,6 @@
 import React from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
-import Announcement from "./Announcement";
-import ClassTile from "./ClassTile";
+import Announcement from "./Course/Announcement";
 import {
 	BrowserRouter as Router,
 	Routes,

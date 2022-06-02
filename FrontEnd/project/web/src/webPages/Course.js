@@ -1,16 +1,15 @@
 import React from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
-import ClassTile from "./ClassTile";
-import CreateCourse from "./CreateCourse";
-import Announcements from "./Announcements";
-import AnnouncementDetails from "./AnnouncementDetails";
-import CreateAnnouncement from "./CreateAnnouncement";
-import CourseHome from "./CourseHome";
-import Grades from "./Grades";
-import InputGrade from "./InputGrade";
-import Assignments2 from "./Assignments2";
-import InputAssignment from "./InputAssignment";
-import SubmitAssignment from "./SubmitAssignment";
+import SideCoursesMenu from "../components/SideCoursesMenu";
+import CreateCourse from "../components/Course/CreateCourse";
+import Announcements from "../components/Course/Announcements";
+import AnnouncementDetails from "../components/Course/AnnouncementDetails";
+import CreateAnnouncement from "../components/Course/CreateAnnouncement";
+import CourseHome from "../components/CourseHome";
+import Grades from "../components/Course/Grades";
+import InputGrade from "../components/Course/InputGrade";
+import Assignments2 from "../components/Course/Assignments2";
+import InputAssignment from "../components/Course/InputAssignment";
+import SubmitAssignment from "../components/Course/SubmitAssignment";
 import { useState, useEffect } from "react";
 import {
 	BrowserRouter as Router,

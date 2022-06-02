@@ -1,6 +1,6 @@
 import React from "react";
 import SideCoursesMenu from "./SideCoursesMenu";
-import ClassTile from "./ClassTile";
+import ClassTile from "./Home/ClassTile";
 import Invoices from "./invoices";
 import {
 	BrowserRouter as Router,

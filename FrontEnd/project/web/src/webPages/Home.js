@@ -1,7 +1,7 @@
 import React from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
-import ClassTile from "./ClassTile";
-import Invoices from "./invoices";
+import SideCoursesMenu from "../components/SideCoursesMenu";
+import ClassTile from "../components/Home/ClassTile";
+import Invoices from "../components/invoices";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -21,16 +21,11 @@ function Home(props) {
             <div className="class">
                 <p>Dashboard</p>
                 <hr></hr>
-                <Link to="/Invoices">Invoices</Link>
-                <br/>
             </div>
             <ClassTile name={"BUSN 36109 81,02,01 Advanced Decision Models with Python"} color={"rgb(152, 108, 22)"}/>
             <ClassTile name={"MPCS 52553 1 Web Development"} color={"darkblue"}/>
             <ClassTile name={"MPCS 55001 1 (Spring 2022) Algorithms"} color={"darkcyan"}/>
             <ClassTile name={"MPCS 55009 1 (Spring 2022) WebDev"} color={"black"}/>
-        <Routes>
-            <Route path="/Invoices" element={<Invoices />} />
-        </Routes>
         </div>
     );
 }

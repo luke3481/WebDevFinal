@@ -1,6 +1,6 @@
 import React from "react";
-import Usersearch from "./Usersearch";
-import Userlist from "./Userlist";
+import Usersearch from "../components/Usersearch";
+import Userlist from "../components/Userlist";
 
 import {
 	BrowserRouter as Router,

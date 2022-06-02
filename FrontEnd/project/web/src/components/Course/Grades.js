@@ -1,8 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import SideCoursesMenu from "./SideCoursesMenu";
+import SideCoursesMenu from "../SideCoursesMenu";
 import Grade from "./Grade";
-import ClassTile from "./ClassTile";
 import {
 	BrowserRouter as Router,
 	Routes,

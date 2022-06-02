@@ -10,17 +10,17 @@ import {
 
 import axios from "axios";
 
-import ClassTile from "./components/ClassTile";
+import ClassTile from "./components/Home/ClassTile";
 import SideBar from "./components/SideBar";
 import Assignments from "./components/Assignments";
 import Teacherassignments from "./components/Teacherassignments";
-import Home from "./components/Home";
+import Home from "./webPages/Home";
 import Adminhome from "./components/Adminhome";
-import Course from "./components/Course";
+import Course from "./webPages/Course";
 import Invoices from "./components/invoices";
 import Login from "./components/Login/Login";
-import Account from "./components/Account";
-import Settings from "./components/Settings";
+import Account from "./webPages/Account";
+import Settings from "./webPages/Settings";
 import useToken from "./components/useToken";
 
 function AppCopy() {
@@ -177,7 +177,6 @@ function AppCopy() {
           <Route path="/Account/*" element={<Account />} />
           <Route path="/Course/*" element={<Course />} />
           <Route path="/Settings/*" element={<Settings />} />
-          <Route path="/Invoices" element={<Invoices />} />
           <Route path="/LogIn" element={<Login />} />
         </Routes>
         <Assignments
