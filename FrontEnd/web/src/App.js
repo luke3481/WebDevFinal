@@ -61,7 +61,6 @@ function AppCopy() {
       // Pull user/course data
       let actualData = await response.json();
       // Debugging
-      console.log("ad", actualData.data);
       const length = parseInt(actualData.data.length);
       // Parse course id data
       let tempCourseIds = [];
@@ -70,7 +69,6 @@ function AppCopy() {
           tempCourseIds.push(actualData.data[i].class_id);
         }
       }
-      console.log("tempCId", tempCourseIds);
       setOldCourseIds(courseIds);
       setCourseIds(tempCourseIds);
       setError(null);
@@ -84,8 +82,6 @@ function AppCopy() {
 
   let checkData1 = (old_courseIds, new_courseIds) => {
     let check = 0;
-    console.log("oci", old_courseIds);
-    console.log("nci", new_courseIds);
     if (old_courseIds.length == new_courseIds.length) {
       for (var i = 0; i < old_courseIds.length; i++) {
         if (old_courseIds[i] !== new_courseIds[i]) {
@@ -136,8 +132,6 @@ function AppCopy() {
     let check = 0;
     if (old_courses.length == new_courses.length) {
       for (var i = 0; i < old_courses.length; i++) {
-        console.log("oc", old_courses);
-        console.log("nc", new_courses);
         if (old_courses[i] != new_courses[i]) {
           check = 1;
           {
@@ -229,6 +223,7 @@ function AppCopy() {
       let tempAssignmentNames = [];
       let tempAssignmentDates = [];
 
+      
       for (var i = 0; i < length; i++) {
         if (assignmentIds.includes(actualData.data[i]["assignment_id"])) {
           tempAssignmentNames.push(actualData.data[i]["assignment_name"]);
@@ -285,7 +280,7 @@ function AppCopy() {
 
   useEffect(() => {
     checkData4(oldAssignmentNames, assignmentNames);
-  }, [assignmentIds, assignmentNames, assignmentDates]);
+  }, [assignmentIds, assignmentNames, assignmentDates, oldAssignmentNames]);
 
   if (!localStorage.getItem("token")) {
     return <Login setUserdata={setUserdata} />;

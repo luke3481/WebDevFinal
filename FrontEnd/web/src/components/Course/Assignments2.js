@@ -57,7 +57,7 @@ function Assignments2(props) {
                     tempAssignmentIds.push(actualData.data[i].assignment_id)
                 }
             }
-            console.log('tai', tempAssignmentIds);
+            
 
             setOldAssignmentIds(assignmentIds);
             setAssignmentIds(tempAssignmentIds);
@@ -89,9 +89,8 @@ function Assignments2(props) {
       };
     
     useEffect(() => {
-        console.log('assignment IDS useEffect');
         checkData1(oldAssignmentIds, assignmentIds);
-        console.log('assignmentIDs', assignmentIds);
+        
     }, [assignmentIds]);
     
     // Retrieve assignment info tied to assignment ids
@@ -106,11 +105,7 @@ function Assignments2(props) {
             // Pull assignment data 
             let actualData = await response.json();  
             
-            // Debugging - Data successfully retrieved but empty
-            console.log('ad2222', actualData);
-            console.log('ad', actualData.data[0]['assignment_id']);
-            console.log('assignmIDscheck', assignmentIds);
-            console.log('assignmentIDs', assignmentIds);
+            
             
             const length = parseInt(actualData.data.length);
             
@@ -126,7 +121,7 @@ function Assignments2(props) {
                 }
             }
             
-            console.log('tan', tempAssignmentNames);
+            
 
             setOldAssignmentNames(assignmentNames);
             setAssignmentNames(tempAssignmentNames);
@@ -146,12 +141,10 @@ function Assignments2(props) {
     
     let checkData2 = (old_data, new_data, num) => {
         let check = 0;
-        console.log('od', old_data);
-        console.log('nd', new_data);
+        
         if (old_data.length == new_data.length) {
           for (var i = 0; i < old_data.length; i++) {
-            console.log('oa', old_data);
-            console.log('na', new_data);
+            
             if (old_data[i] != new_data[i]) {
               check = 1;
               {break};
