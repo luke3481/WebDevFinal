@@ -34,10 +34,14 @@ a {
   cursor: pointer;
 }
 
+input {
+  margin-top: 5px;
+}
+
 /* Design for desktop and tablets */
 @media only screen and (min-width: 768px) {
   .logincontainer {
-    /* background-image: url("../../imgs/loginbackground.jpg"); */
+    background-image: url("../../imgs/loginbackground.jpg");
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 15px;
     color: #fff;
