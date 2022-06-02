@@ -58,7 +58,7 @@ function Announcements(props) {
                 
                 if (new String(courseId).valueOf() === new String(actualData.data[i].class_id).valueOf()) {
                     tempAnnouncementIds.push(actualData.data[i].announcement_id);
-                    console.log('taid', tempAnnouncementIds);
+                    
                 }
             }
             

@@ -34,9 +34,13 @@ function AppCopy() {
 
   const [courseIds, setCourseIds] = useState(["1", "2", "3"]);
   const [oldCourseIds, setOldCourseIds] = useState([]);
+  const [courseTIds, setTCourseIds] = useState(["1", "2", "3"]);
+  const [oldCourseTIds, setOldCourseTIds] = useState([]);
 
   const [courses, setCourses] = useState(["test", "Algos", "Python"]);
   const [oldCourses, setOldCourses] = useState([]);
+  const [coursesT, setTCourses] = useState(["test", "Algos", "Python"]);
+  const [oldTCourses, setTOldCourses] = useState([]);
 
   const [assignmentIds, setAssignmentIds] = useState([]);
   const [oldAssignmentIds, setOldAssignmentIds] = useState(["1"]);
@@ -47,8 +51,7 @@ function AppCopy() {
   const [assignmentDates, setAssignmentDates] = useState([]);
   const [oldAssignmentDates, setOldAssignmentDates] = useState(["1"]);
 
-  // Retrieve user_id from token
-  const user_id = "1";
+
 
   // Retrieve class_ids tied to user_id
   const getData1 = async () => {
@@ -110,6 +113,7 @@ function AppCopy() {
       }
       // Pull course data
       let actualData = await response.json();
+      console.log(actualData, 'getdata2ad');
       const length = parseInt(actualData.data.length);
       // Parse course data
       let tempCourses = [];
@@ -170,11 +174,14 @@ function AppCopy() {
         if (
           new String(actualData.data[i].user_id).valueOf() ===
           new String(user_id).valueOf()
+          ||
+          new String(actualData.data[i].teacher_id).valueOf() ===
+          new String(user_id).valueOf()
         ) {
           tempAssignmentIds.push(actualData.data[i].assignment_id);
         }
       }
-
+      
       setOldAssignmentIds(assignmentIds);
       setAssignmentIds(tempAssignmentIds);
 
@@ -203,9 +210,11 @@ function AppCopy() {
     }
     if (check == 1) {
       getData3();
+      getData4();
     }
   };
 
+  
   // Retrieve assignment info tied to assignment ids
   const getData4 = async () => {
     try {
@@ -217,13 +226,15 @@ function AppCopy() {
       }
       // Pull assignment data
       let actualData = await response.json();
+      console.log('getdata4 data', actualData);
+      console.log('getdata4 assignment ids', assignmentIds);
 
       const length = parseInt(actualData.data.length);
 
       // Parse assignment data
       let tempAssignmentNames = [];
       let tempAssignmentDates = [];
-
+      
       
       for (var i = 0; i < length; i++) {
         if (assignmentIds.includes(actualData.data[i]["assignment_id"])) {
@@ -247,6 +258,7 @@ function AppCopy() {
     }
   };
 
+  /*
   let checkData4 = (old_data, new_data, num) => {
     let check = 0;
     if (old_data.length == new_data.length) {
@@ -265,6 +277,7 @@ function AppCopy() {
       getData4();
     }
   };
+  */
 
   useEffect(() => {
     checkData1(oldCourseIds, courseIds);
@@ -279,16 +292,20 @@ function AppCopy() {
     checkData3(oldAssignmentIds, assignmentIds);
   }, [assignmentIds]);
 
+  /*
   useEffect(() => {
     checkData4(oldAssignmentNames, assignmentNames);
   }, [assignmentIds, assignmentNames, assignmentDates, oldAssignmentNames]);
+  */
 
+  
   if (!localStorage.getItem("token")) {
     return <Login setUserdata={setUserdata} />;
   }
 
   const userinfo = localStorage.getItem("token");
   const parsedData = JSON.parse(userinfo);
+  const user_id = parsedData["user_id"];
   const account_type = parsedData["account_type"];
 
   if (account_type === "student") {
@@ -348,16 +365,9 @@ function AppCopy() {
             <Route path="/Course/*" element={<Teachercoursehome />} />
             <Route path="/LogIn" element={<Login />} />
           </Routes>
-          {/* <Assignments
-          Ass1={assignmentNames[0]}
-          Ass2={assignmentNames[1]}
-          Ass3={assignmentNames[2]}
-        /> */}
-          {/* Below needs to be shown instead of above for teacher accounts */}
           <Teacherassignments
-            Ass1={"assignment1"}
-            Ass2={"assignment2"}
-            Ass3={"assignment3"}
+            Ass1={assignmentNames[0]}
+            Ass2={assignmentNames[1]}
           />
         </div>
       </div>

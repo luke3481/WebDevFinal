@@ -34,7 +34,10 @@ function Assignments2(props) {
     
 
     // Retrieve user_id from token
-    const user_id = '1';
+    const user_data = localStorage.getItem("token");
+    const parsedData = JSON.parse(user_data);
+    const user_id = parsedData['user_id'];
+    const account_type = parsedData["account_type"];
 
     // Retrieve assignment ids tied to user ids and class ids
     const getData1 = async () => {

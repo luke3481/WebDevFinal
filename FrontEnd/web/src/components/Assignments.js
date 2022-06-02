@@ -29,7 +29,10 @@ function Assignments(props) {
     
 
     // Retrieve user_id from token
-    const user_id = '1';
+    const user_data = localStorage.getItem("token");
+    const parsedData = JSON.parse(user_data);
+    const user_id = parsedData['user_id'];
+    const account_type = parsedData["account_type"];
 
     // Retrieve assignment ids tied to user ids and class ids
     const getData1 = async () => {
@@ -42,14 +45,17 @@ function Assignments(props) {
                 );
             }
             // Pull user/assignment data 
-            let actualData = await response.json();  
+            let actualData = await response.json(); 
+            console.log('assGetdata1', actualData)
             
             const length = parseInt(actualData.data.length);
             
             // Parse assignment id data
             let tempAssignmentIds = [];
             for (var i = 0; i < length; i++) {
-                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
+                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()
+                    || new String(actualData.data[i].teacher_id).valueOf() === new String(user_id).valueOf()
+                ) {
                     tempAssignmentIds.push(actualData.data[i].assignment_id)
                 }
             }

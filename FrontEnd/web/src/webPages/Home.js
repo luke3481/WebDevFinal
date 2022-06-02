@@ -29,7 +29,11 @@ function Home(props) {
   
 
     // Retrieve user_id from token
-    const user_id = "1";
+      // Retrieve user_id from token
+    const user_data = localStorage.getItem("token");
+    const parsedData = JSON.parse(user_data);
+    const user_id = parsedData['user_id'];
+    const account_type = parsedData["account_type"];
   
   
     // Retrieve class_ids tied to user_id
