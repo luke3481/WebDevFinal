@@ -1,5 +1,8 @@
 
 function Assignments(props) {
+    
+    console.log('ass', props.Ass1);
+    
     return (
     <div id="assignments">
         <div className="assignments_logo">

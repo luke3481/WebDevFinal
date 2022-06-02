@@ -36,6 +36,16 @@ function AppCopy() {
 
   const [courses, setCourses] = useState(["test", "Algos", "Python"]);
   const [oldCourses, setOldCourses] = useState([]);
+
+  const [assignmentIds, setAssignmentIds] = useState([]);
+  const [oldAssignmentIds, setOldAssignmentIds] = useState(['1']);
+  
+  const [assignmentNames, setAssignmentNames] = useState([]);
+  const [oldAssignmentNames, setOldAssignmentNames] = useState(['1']);
+
+  const [assignmentDates, setAssignmentDates] = useState([]);
+  const [oldAssignmentDates, setOldAssignmentDates] = useState(['1']);
+
   // Retrieve user_id from token
   const user_id = "1";
 
@@ -81,8 +91,6 @@ function AppCopy() {
     console.log('nci', new_courseIds)
     if (old_courseIds.length == new_courseIds.length) {
       for (var i = 0; i < old_courseIds.length; i++) {
-        console.log('oc', old_courseIds[i]);
-        console.log('n', new_courseIds[i]);
         if (old_courseIds[i] !== new_courseIds[i]) {
           check = 1;
           {break};
@@ -107,7 +115,6 @@ function AppCopy() {
       }
       // Pull course data
       let actualData = await response.json();
-      console.log('dsec', actualData.data);
       const length = parseInt(actualData.data.length);
       // Parse course data
       let tempCourses = [];
@@ -146,6 +153,118 @@ function AppCopy() {
     }
   };
 
+  // Retrieve assignment ids tied to user ids and assignment ids
+  const getData3 = async () => {
+    try {
+        const response = await fetch('http://localhost:8080/user_assignment/list');
+        if (!response.ok) {
+            throw new Error(
+                'This is an HTTP error: The status is ${response.status}'
+            );
+        }
+        // Pull user/assignment data 
+        let actualData = await response.json();  
+        
+        const length = parseInt(actualData.data.length);
+        
+        // Parse assignment id data
+        let tempAssignmentIds = [];
+        for (var i = 0; i < length; i++) {
+            if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
+                tempAssignmentIds.push(actualData.data[i].assignment_id)
+            }
+        }
+
+        setOldAssignmentIds(assignmentIds);
+        setAssignmentIds(tempAssignmentIds);
+        
+        setError(null);
+    } catch (err) {
+        setError(err.message);
+        setData(null);
+    } finally {
+        setLoading(false);
+    }
+}
+
+let checkData3 = (old_data, new_data, num) => {
+    let check = 0;
+    if (old_data.length == new_data.length) {
+      for (var i = 0; i < old_data.length; i++) {
+        if (old_data[i] != new_data[i]) {
+          check = 1;
+          {break};
+        }
+      }
+    } else {
+      check = 1;
+    }
+    if (check == 1) {
+        getData3();
+    }
+  };
+
+
+// Retrieve assignment info tied to assignment ids
+const getData4 = async () => {
+    try {
+        const response = await fetch('http://localhost:8080/assignment/list');
+        if (!response.ok) {
+            throw new Error(
+                'This is an HTTP error: The status is ${response.status}'
+            );
+        }
+        // Pull assignment data 
+        let actualData = await response.json();
+        
+        
+        const length = parseInt(actualData.data.length);
+        
+        // Parse assignment data
+        let tempAssignmentNames = [];
+        let tempAssignmentDates = [];
+        
+        for (var i = 0; i < length; i++) {
+            if (assignmentIds.includes(actualData.data[i]['assignment_id'])) {
+                
+                tempAssignmentNames.push(actualData.data[i]['assignment_name'])
+                tempAssignmentDates.push(actualData.data[i]['due_date'])
+            }
+        }
+        
+        setOldAssignmentNames(assignmentNames);
+        setAssignmentNames(tempAssignmentNames);
+
+        setOldAssignmentDates(assignmentDates);
+        setAssignmentDates(tempAssignmentDates);
+        
+        
+        setError(null);
+    } catch (err) {
+        setError(err.message);
+        setData(null);
+    } finally {
+        setLoading(false);
+    }
+}
+
+let checkData4 = (old_data, new_data, num) => {
+    let check = 0;
+    if (old_data.length == new_data.length) {
+      for (var i = 0; i < old_data.length; i++) {
+        if (old_data[i] != new_data[i]) {
+          check = 1;
+          {break};
+        }
+      }
+    } else {
+      check = 1;
+    }
+    if (check == 1) {
+        getData4();
+    }
+  };
+
 
   useEffect(() => {
     checkData1(oldCourseIds, courseIds);
@@ -156,6 +275,14 @@ function AppCopy() {
   useEffect(() => {
     checkData2(oldCourses, courses);
   }, [courses]);
+
+  useEffect(() => {
+    checkData3(oldAssignmentIds, assignmentIds);
+  }, [assignmentIds]);
+
+  useEffect(() => {
+    checkData4(oldAssignmentNames, assignmentNames);
+  }, [assignmentIds, assignmentNames, assignmentDates]);
 
 
   if (!localStorage.getItem("token")) {
@@ -180,9 +307,9 @@ function AppCopy() {
           <Route path="/LogIn" element={<Login />} />
         </Routes>
         <Assignments
-          Ass1={"assignment1"}
-          Ass2={"assignment2"}
-          Ass3={"assignment3"}
+          Ass1={assignmentNames[0]}
+          Ass2={assignmentNames[1]}
+          Ass3={assignmentNames[2]}
         />
         {/* Below needs to be shown instead of above for teacher accounts */}
         {/* <Teacherassignments Ass1={'assignment1'} Ass2={'assignment2'} Ass3={'assignment3'} /> */}
