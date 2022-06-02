@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import SideCourses from "./SideCourses";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function SideCoursesMenu(props) {
   const [wid, setWid] = useState("0%");
