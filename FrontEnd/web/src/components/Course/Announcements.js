@@ -30,9 +30,7 @@ function Announcements(props) {
     const [oldAnnouncementDates, setOldAnnouncementDates] = useState([]);
 
 
-    // Does state passing work?
-    console.log('cccid',courseId);
-    console.log('cccc',course);
+    
     
 
     
@@ -50,15 +48,14 @@ function Announcements(props) {
             let actualData = await response.json();  
             
             const length = parseInt(actualData.data.length);
-            console.log('ad', actualData)
+            
             
             
             
             // Parse announcement id data
             let tempAnnouncementIds = [];
             for (var i = 0; i < length; i++) {
-                console.log('cId', courseId);
-                console.log('cdId', actualData.data[i].class_id);
+                
                 if (new String(courseId).valueOf() === new String(actualData.data[i].class_id).valueOf()) {
                     tempAnnouncementIds.push(actualData.data[i].announcement_id);
                     console.log('taid', tempAnnouncementIds);
@@ -78,8 +75,7 @@ function Announcements(props) {
         let check = 0;
         if (old_announceId.length == new_announceId.length) {
           for (var i = 0; i < old_announceId.length; i++) {
-            console.log('oa', old_announceId);
-            console.log('na', new_announceId);
+           
             if (old_announceId[i] != new_announceId[i]) {
               check = 1;
               {break};
@@ -109,7 +105,7 @@ function Announcements(props) {
             }
             // Pull announcement data 
             let actualData = await response.json();  
-            console.log('ad2', actualData)
+            
             
             const length = parseInt(actualData.data.length);
             
@@ -136,7 +132,7 @@ function Announcements(props) {
             setAnnouncementDates(tempAnnouncementDates);
             
             
-            console.log('announcement', announcements); 
+            
             
             
         } catch (err) {
@@ -148,8 +144,7 @@ function Announcements(props) {
         let check = 0;
         if (old_announce.length == new_announce.length) {
           for (var i = 0; i < old_announce.length; i++) {
-            console.log('oa', old_announce);
-            console.log('na', new_announce);
+            
             if (old_announce[i] != new_announce[i]) {
               check = 1;
               {break};

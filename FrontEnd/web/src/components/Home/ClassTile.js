@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 function ClassTile(props) {
-  console.log("courseIDclass tile", props.courseId);
+  
   return (
     <div className="class_icon" aria-label="Class1" style={{ opacity: 1 }}>
       <Link

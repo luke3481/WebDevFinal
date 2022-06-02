@@ -44,7 +44,7 @@ function Home(props) {
         // Pull user/course data
         let actualData = await response.json();
         // Debugging
-        console.log('ad', actualData.data);
+        
         const length = parseInt(actualData.data.length);
         // Parse course id data
         let tempCourseIds = [];
@@ -53,7 +53,7 @@ function Home(props) {
             tempCourseIds.push(actualData.data[i].class_id);
           }
         }
-        console.log('tempCId', tempCourseIds)
+        
         setOldCourseIds(courseIds);
         setCourseIds(tempCourseIds);
         setError(null);
@@ -69,8 +69,7 @@ function Home(props) {
   
     let checkData1 = (old_courseIds, new_courseIds) => {
       let check = 0;
-      console.log('oci', old_courseIds)
-      console.log('nci', new_courseIds)
+      
       if (old_courseIds.length == new_courseIds.length) {
         for (var i = 0; i < old_courseIds.length; i++) {
           if (old_courseIds[i] !== new_courseIds[i]) {
@@ -120,8 +119,7 @@ function Home(props) {
       let check = 0;
       if (old_courses.length == new_courses.length) {
         for (var i = 0; i < old_courses.length; i++) {
-          console.log('oc', old_courses);
-          console.log('nc', new_courses);
+          
           if (old_courses[i] != new_courses[i]) {
             check = 1;
             {break};
@@ -138,7 +136,7 @@ function Home(props) {
 
     useEffect(() => {
         checkData1(oldCourseIds, courseIds);
-        console.log('kkk',courseIds);
+        
       }, [courseIds]);
     
     
@@ -147,15 +145,18 @@ function Home(props) {
         checkData2(oldCourses, courses);
       }, [courses]);
 
+
+    const tiles=courses.map((data,id)=>{
+      return <ClassTile name={data} courseId={courseIds[id]} color={'cyanblue'}/>
+    });
+    
     return(
         <div id="classes">
             <div className="class">
                 <p>Dashboard</p>
                 <hr></hr>
             </div>
-            <ClassTile name={courses[0]} courseId={courseIds[0]} color={"rgb(152, 108, 22)"}/>
-            <ClassTile name={courses[1]} courseId={courseIds[1]} color={"darkblue"}/>
-            <ClassTile name={courses[2]} courseId={courseIds[2]} color={"darkcyan"}/>
+            {tiles}
         </div>
     );
 }
