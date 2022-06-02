@@ -13,6 +13,7 @@ const userAssignmentRouter = require("./routes/users_assignment");
 const assignmentRouter = require("./routes/assignment");
 const classAnnouncementRouter = require("./routes/class_announcements");
 const announcementRouter = require("./routes/announcement");
+const adminRouter = require("./routes/admin");
 
 //this is the object that does all the work
 const app = express();
@@ -33,6 +34,7 @@ app.use("/user_assignment", userAssignmentRouter);
 app.use("/assignment", assignmentRouter);
 app.use("/class_announcements", classAnnouncementRouter);
 app.use("/announcement", announcementRouter);
+app.use("/admin", adminRouter);
 
 //Luke's log in call. Maybe replace with user?
 // app.use('/login', (req, res) => {
