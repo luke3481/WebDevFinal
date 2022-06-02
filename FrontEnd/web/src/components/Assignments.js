@@ -140,32 +140,7 @@ function Assignments(props) {
             setLoading(false);
         }
     }
-    /*
-    let checkData2 = (old_data, new_data, num) => {
-        let check = 0;
-        console.log('check data 2 old data', old_data);
-        console.log('check data 2 new data', new_data);
-        if (old_data.length == new_data.length) {
-          for (var i = 0; i < old_data.length; i++) {
-            
-            if (old_data[i] != new_data[i]) {
-              check = 1;
-              {break};
-            }
-          }
-        } else {
-          check = 1;
-        }
-        if (check == 1) {
-            getData2();
-        }
-      };
-
-    useEffect(() => {
-        console.log('Use Effect2');
-        checkData2(oldAssignmentNames, assignmentNames);
-    }, [assignmentIds]);
-    */
+    
     
 
     let itemList=[];
