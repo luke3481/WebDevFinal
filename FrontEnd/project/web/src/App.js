@@ -38,17 +38,16 @@ function AppCopy() {
   const [oldCourses, setOldCourses] = useState([]);
 
   const [assignmentIds, setAssignmentIds] = useState([]);
-  const [oldAssignmentIds, setOldAssignmentIds] = useState(['1']);
-  
+  const [oldAssignmentIds, setOldAssignmentIds] = useState(["1"]);
+
   const [assignmentNames, setAssignmentNames] = useState([]);
-  const [oldAssignmentNames, setOldAssignmentNames] = useState(['1']);
+  const [oldAssignmentNames, setOldAssignmentNames] = useState(["1"]);
 
   const [assignmentDates, setAssignmentDates] = useState([]);
-  const [oldAssignmentDates, setOldAssignmentDates] = useState(['1']);
+  const [oldAssignmentDates, setOldAssignmentDates] = useState(["1"]);
 
   // Retrieve user_id from token
   const user_id = "1";
-
 
   // Retrieve class_ids tied to user_id
   const getData1 = async () => {
@@ -62,7 +61,7 @@ function AppCopy() {
       // Pull user/course data
       let actualData = await response.json();
       // Debugging
-      console.log('ad', actualData.data);
+      console.log("ad", actualData.data);
       const length = parseInt(actualData.data.length);
       // Parse course id data
       let tempCourseIds = [];
@@ -71,11 +70,10 @@ function AppCopy() {
           tempCourseIds.push(actualData.data[i].class_id);
         }
       }
-      console.log('tempCId', tempCourseIds)
+      console.log("tempCId", tempCourseIds);
       setOldCourseIds(courseIds);
       setCourseIds(tempCourseIds);
       setError(null);
-
     } catch (err) {
       setError(err.message);
       setData(null);
@@ -84,16 +82,17 @@ function AppCopy() {
     }
   };
 
-
   let checkData1 = (old_courseIds, new_courseIds) => {
     let check = 0;
-    console.log('oci', old_courseIds)
-    console.log('nci', new_courseIds)
+    console.log("oci", old_courseIds);
+    console.log("nci", new_courseIds);
     if (old_courseIds.length == new_courseIds.length) {
       for (var i = 0; i < old_courseIds.length; i++) {
         if (old_courseIds[i] !== new_courseIds[i]) {
           check = 1;
-          {break};
+          {
+            break;
+          }
         }
       }
     } else {
@@ -103,7 +102,6 @@ function AppCopy() {
       getData1();
     }
   };
-
 
   const getData2 = async () => {
     try {
@@ -138,11 +136,13 @@ function AppCopy() {
     let check = 0;
     if (old_courses.length == new_courses.length) {
       for (var i = 0; i < old_courses.length; i++) {
-        console.log('oc', old_courses);
-        console.log('nc', new_courses);
+        console.log("oc", old_courses);
+        console.log("nc", new_courses);
         if (old_courses[i] != new_courses[i]) {
           check = 1;
-          {break};
+          {
+            break;
+          }
         }
       }
     } else {
@@ -156,120 +156,123 @@ function AppCopy() {
   // Retrieve assignment ids tied to user ids and assignment ids
   const getData3 = async () => {
     try {
-        const response = await fetch('http://localhost:8080/user_assignment/list');
-        if (!response.ok) {
-            throw new Error(
-                'This is an HTTP error: The status is ${response.status}'
-            );
-        }
-        // Pull user/assignment data 
-        let actualData = await response.json();  
-        
-        const length = parseInt(actualData.data.length);
-        
-        // Parse assignment id data
-        let tempAssignmentIds = [];
-        for (var i = 0; i < length; i++) {
-            if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
-                tempAssignmentIds.push(actualData.data[i].assignment_id)
-            }
-        }
+      const response = await fetch(
+        "http://localhost:8080/user_assignment/list"
+      );
+      if (!response.ok) {
+        throw new Error(
+          "This is an HTTP error: The status is ${response.status}"
+        );
+      }
+      // Pull user/assignment data
+      let actualData = await response.json();
 
-        setOldAssignmentIds(assignmentIds);
-        setAssignmentIds(tempAssignmentIds);
-        
-        setError(null);
+      const length = parseInt(actualData.data.length);
+
+      // Parse assignment id data
+      let tempAssignmentIds = [];
+      for (var i = 0; i < length; i++) {
+        if (
+          new String(actualData.data[i].user_id).valueOf() ===
+          new String(user_id).valueOf()
+        ) {
+          tempAssignmentIds.push(actualData.data[i].assignment_id);
+        }
+      }
+
+      setOldAssignmentIds(assignmentIds);
+      setAssignmentIds(tempAssignmentIds);
+
+      setError(null);
     } catch (err) {
-        setError(err.message);
-        setData(null);
+      setError(err.message);
+      setData(null);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-}
+  };
 
-let checkData3 = (old_data, new_data, num) => {
+  let checkData3 = (old_data, new_data, num) => {
     let check = 0;
     if (old_data.length == new_data.length) {
       for (var i = 0; i < old_data.length; i++) {
         if (old_data[i] != new_data[i]) {
           check = 1;
-          {break};
+          {
+            break;
+          }
         }
       }
     } else {
       check = 1;
     }
     if (check == 1) {
-        getData3();
+      getData3();
     }
   };
 
-
-// Retrieve assignment info tied to assignment ids
-const getData4 = async () => {
+  // Retrieve assignment info tied to assignment ids
+  const getData4 = async () => {
     try {
-        const response = await fetch('http://localhost:8080/assignment/list');
-        if (!response.ok) {
-            throw new Error(
-                'This is an HTTP error: The status is ${response.status}'
-            );
-        }
-        // Pull assignment data 
-        let actualData = await response.json();
-        
-        
-        const length = parseInt(actualData.data.length);
-        
-        // Parse assignment data
-        let tempAssignmentNames = [];
-        let tempAssignmentDates = [];
-        
-        for (var i = 0; i < length; i++) {
-            if (assignmentIds.includes(actualData.data[i]['assignment_id'])) {
-                
-                tempAssignmentNames.push(actualData.data[i]['assignment_name'])
-                tempAssignmentDates.push(actualData.data[i]['due_date'])
-            }
-        }
-        
-        setOldAssignmentNames(assignmentNames);
-        setAssignmentNames(tempAssignmentNames);
+      const response = await fetch("http://localhost:8080/assignment/list");
+      if (!response.ok) {
+        throw new Error(
+          "This is an HTTP error: The status is ${response.status}"
+        );
+      }
+      // Pull assignment data
+      let actualData = await response.json();
 
-        setOldAssignmentDates(assignmentDates);
-        setAssignmentDates(tempAssignmentDates);
-        
-        
-        setError(null);
+      const length = parseInt(actualData.data.length);
+
+      // Parse assignment data
+      let tempAssignmentNames = [];
+      let tempAssignmentDates = [];
+
+      for (var i = 0; i < length; i++) {
+        if (assignmentIds.includes(actualData.data[i]["assignment_id"])) {
+          tempAssignmentNames.push(actualData.data[i]["assignment_name"]);
+          tempAssignmentDates.push(actualData.data[i]["due_date"]);
+        }
+      }
+
+      setOldAssignmentNames(assignmentNames);
+      setAssignmentNames(tempAssignmentNames);
+
+      setOldAssignmentDates(assignmentDates);
+      setAssignmentDates(tempAssignmentDates);
+
+      setError(null);
     } catch (err) {
-        setError(err.message);
-        setData(null);
+      setError(err.message);
+      setData(null);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-}
+  };
 
-let checkData4 = (old_data, new_data, num) => {
+  let checkData4 = (old_data, new_data, num) => {
     let check = 0;
     if (old_data.length == new_data.length) {
       for (var i = 0; i < old_data.length; i++) {
         if (old_data[i] != new_data[i]) {
           check = 1;
-          {break};
+          {
+            break;
+          }
         }
       }
     } else {
       check = 1;
     }
     if (check == 1) {
-        getData4();
+      getData4();
     }
   };
-
 
   useEffect(() => {
     checkData1(oldCourseIds, courseIds);
   }, [courseIds]);
-
 
   // Retrieve class_names tied to class_ids
   useEffect(() => {
@@ -284,7 +287,6 @@ let checkData4 = (old_data, new_data, num) => {
     checkData4(oldAssignmentNames, assignmentNames);
   }, [assignmentIds, assignmentNames, assignmentDates]);
 
-
   if (!localStorage.getItem("token")) {
     return <Login setUserdata={setUserdata} />;
   }
@@ -292,11 +294,7 @@ let checkData4 = (old_data, new_data, num) => {
   return (
     <div className="App">
       <div className="container">
-        <SideBar
-          courses={courses}
-          courseIds={courseIds}
-          userdata={userdata}
-        />
+        <SideBar courses={courses} courseIds={courseIds} userdata={userdata} />
         <Routes>
           <Route path="*" element={<Home />} />
           {/* below is activated and above is inactivated if admin account */}

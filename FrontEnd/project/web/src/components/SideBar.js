@@ -10,21 +10,30 @@ async function logout() {
 function SideBar(props) {
   console.log(props.courses[0]);
 
+  const userdata = localStorage.getItem("token");
+  const parsedData = JSON.parse(userdata);
+  const account_type = parsedData["account_type"];
+
+  if (account_type === "admin") {
+    const settings = document.getElementById("settingsbutton");
+    settings.hidden = false;
+  }
+
   return (
     <div id="sidebar">
       <div id="sidebar_button">
-        <button type="button" id="btnstyle1">
+        <button type="button" class="btnstyle1">
           <Link to="/">
             <img id="home" src={require("../imgs/uchicagowhitelogo.png")} />
           </Link>
         </button>
-        <button type="button" id="btnstyle2">
+        <button type="button" class="btnstyle2">
           <Link to="/Account">
             <img src={require("../imgs/account.jpg")} />
           </Link>
           Account
         </button>
-        <button type="button" id="btnstyle2">
+        <button type="button" class="btnstyle2">
           <Link to="/">
             <img src={require("../imgs/dashboard.png")} />
           </Link>
@@ -35,13 +44,13 @@ function SideBar(props) {
           courses={props.courses}
           courseIds={props.courseIds}
         />
-        <button type="button" id="btnstyle2">
+        <button type="button" class="btnstyle2" id="settingsbutton" hidden>
           <Link to="/Settings">
             <img src={require("../imgs/settings.png")} />
           </Link>
           Settings
         </button>
-        <button type="button" id="btnstyle2" onClick={logout}>
+        <button type="button" class="btnstyle2" onClick={logout}>
           <Link to="/">
             <img src={require("../imgs/logout.png")} />
           </Link>

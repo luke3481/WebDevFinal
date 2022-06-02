@@ -98,7 +98,7 @@ export default function Newuser({ setLogindisplay, setUserdata }) {
           <label for="password">Password: </label>
           <br />
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={formValues.password}
@@ -114,7 +114,7 @@ export default function Newuser({ setLogindisplay, setUserdata }) {
           <label for="confirmpassword">Confirm password: </label>
           <br />
           <input
-            type="text"
+            type="password"
             id="confirmpassword"
             name="confirmpassword"
             value={formValues.confirmpassword}
