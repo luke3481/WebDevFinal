@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function AccountHome() {
   const userdata = localStorage.getItem("token");
@@ -30,16 +30,12 @@ export default function AccountHome() {
       .catch((err) => console.log(err));
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
     getData({ user_id });
-  };
+  }, []);
 
   return (
-    <div id="accounthome" onClick={handleSubmit}>
-      <p>
-        <h4>Click to Display</h4>
-      </p>
+    <div id="accounthome">
       <p>
         Name: <b>{name}</b>
       </p>

@@ -1,13 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ClassTile(props) {
-  
   return (
     <div className="class_icon" aria-label="Class1" style={{ opacity: 1 }}>
       <Link

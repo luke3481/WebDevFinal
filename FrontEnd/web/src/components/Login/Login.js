@@ -5,7 +5,6 @@ import Forgotpassword from "./Forgotpassword";
 import Newuser from "./Newuser";
 import Loginform from "./Loginform";
 import md5 from "md5";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function Login({ setUserdata }) {
   const [username, setUserName] = useState();
@@ -24,8 +23,13 @@ export default function Login({ setUserdata }) {
       .then((data) => data.json())
       .then((res) => {
         if (res.data) {
-          localStorage.setItem("token", JSON.stringify(res.data));
-          setUserdata(res.data);
+          const status = JSON.parse(JSON.stringify(res.data["status"]));
+          if (status === "inactive") {
+            setErrormessage("Please wait to be activated");
+          } else {
+            localStorage.setItem("token", JSON.stringify(res.data));
+            setUserdata(res.data);
+          }
         } else {
           setErrormessage("Username or Password is Incorrect");
         }
@@ -81,12 +85,6 @@ export default function Login({ setUserdata }) {
       </div>
     );
   }
-
-  <Routes>
-    <Route path="*" element={<Loginform />} />
-    <Route path="/Newuser" element={<Newuser />} />
-    <Route path="/Forgotpassword" element={<Forgotpassword />} />
-  </Routes>;
 }
 
 Login.propTypes = {

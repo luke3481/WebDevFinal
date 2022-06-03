@@ -1,10 +1,6 @@
 import React from "react";
-import SideCoursesMenu from "../SideCoursesMenu";
-import Announcement from "../Course/Announcement";
-import ClassTile from "../Home/ClassTile";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-function Usersearch(props) {
+export default function Usersearch() {
   return (
     <div id="usersearch">
       <form>
@@ -36,5 +32,3 @@ function Usersearch(props) {
     </div>
   );
 }
-
-export default Usersearch;

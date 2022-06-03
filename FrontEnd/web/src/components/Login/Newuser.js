@@ -1,4 +1,5 @@
 import { useState } from "react";
+import md5 from "md5";
 
 const initialFormValues = {
   user_name: "",
@@ -13,7 +14,7 @@ const initialFormValues = {
   a3: "",
 };
 
-export default function Newuser({ setLogindisplay, setUserdata }) {
+export default function Newuser({ setLogindisplay }) {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   function handleChanges(e) {
@@ -21,19 +22,15 @@ export default function Newuser({ setLogindisplay, setUserdata }) {
   }
 
   function newUser() {
+    formValues.password = md5(formValues.password);
+    console.log(formValues);
     return fetch("http://localhost:8080/user/newuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formValues),
-    })
-      .then((data) => data.json())
-      .then((res) => {
-        // localStorage.setItem("token", JSON.stringify(res.data));
-        // setUserdata(res.data);
-      })
-      .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
   }
 
   return (
@@ -119,7 +116,10 @@ export default function Newuser({ setLogindisplay, setUserdata }) {
             name="confirmpassword"
             value={formValues.confirmpassword}
             onChange={handleChanges}
+            pattern="(?=.*\d)(?=.*[!@#$%^&*]).{5,}"
+            autofocus
             required
+            title="Must be 5 characters with at least 1 number and 1 symbol"
           />
           <br />
           <br />

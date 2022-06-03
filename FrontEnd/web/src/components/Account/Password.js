@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import md5 from "md5";
-import SideCoursesMenu from "../SideCoursesMenu";
-import Announcement from "../Course/Announcement";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-function Password() {
+export default function Password() {
   const userdata = localStorage.getItem("token");
   const parsedData = JSON.parse(userdata);
   const user_id = parsedData["user_id"];
   const [message, setMessage] = useState();
   const [password, setPassword] = useState();
   const [new_password, setNewpassword] = useState();
+  const [confirm_password, setConfirmpassword] = useState();
+  const [matches, setMatches] = useState();
 
   function changePassword(changes) {
     return fetch("http://localhost:8080/user/changepassword", {
@@ -34,9 +33,22 @@ function Password() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const hashedNewpassword = md5(new_password);
-    changePassword({ password, user_id, hashedNewpassword });
-    e.target.reset();
+    console.log(new_password);
+    var confirmed = confirmPassword();
+    if (confirmed) {
+      changePassword({ password, user_id, hashedNewpassword });
+      e.target.reset();
+      setMatches("");
+    }
   };
+
+  function confirmPassword() {
+    if (new_password !== confirm_password) {
+      setMatches("Passwords Do Not Match");
+      return false;
+    }
+    return true;
+  }
 
   return (
     <div id="passwordsec">
@@ -73,10 +85,15 @@ function Password() {
           type="password"
           id="confirmpassword"
           name="confirmpassword"
+          pattern="(?=.*\d)(?=.*[!@#$%^&*]).{5,}"
+          autofocus
           required
+          title="Must be 5 characters with at least 1 number and 1 symbol"
           style={{ width: "400px" }}
+          onChange={(e) => setConfirmpassword(e.target.value)}
         />
         <br />
+        <div class="message">{matches}</div>
         <br />
         <input type="submit" />
       </form>
@@ -84,5 +101,3 @@ function Password() {
     </div>
   );
 }
-
-export default Password;

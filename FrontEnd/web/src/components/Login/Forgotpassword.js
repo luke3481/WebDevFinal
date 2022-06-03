@@ -173,15 +173,3 @@ export default function Forgotpassword({ setLogindisplay }) {
     </div>
   );
 }
-
-// <form>
-//   <label for="resetpassword">
-//     Reset Password **hide this section until successful submission of
-//     above**
-//   </label>
-//   <br />
-//   <input type="text" id="restpassword" name="resetpassword" />
-//   <br />
-//   <br />
-//   <input type="submit" />
-// </form>;
