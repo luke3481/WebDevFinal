@@ -1,6 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
+
+import axios from "axios";
+
+import ClassTile from "./components/Home/ClassTile";
 import SideBar from "./components/SideBar";
 import AdminSideBar from "./components/AdminSideBar";
 import Assignments from "./components/Assignments";
@@ -54,11 +64,10 @@ function AppCopy() {
       let actualData = await response.json();
       // Debugging
       const length = parseInt(actualData.data.length);
-
       // Parse course id data
       let tempCourseIds = [];
       for (var i = 0; i < length; i++) {
-        if (actualData.data[i].user_id === user_id) {
+        if (actualData.data[i].user_id == user_id) {
           tempCourseIds.push(actualData.data[i].class_id);
         }
       }
@@ -75,7 +84,7 @@ function AppCopy() {
 
   let checkData1 = (old_courseIds, new_courseIds) => {
     let check = 0;
-    if (old_courseIds.length === new_courseIds.length) {
+    if (old_courseIds.length == new_courseIds.length) {
       for (var i = 0; i < old_courseIds.length; i++) {
         if (old_courseIds[i] !== new_courseIds[i]) {
           check = 1;
@@ -87,7 +96,7 @@ function AppCopy() {
     } else {
       check = 1;
     }
-    if (check === 1) {
+    if (check == 1) {
       getData1();
     }
   };
@@ -124,9 +133,9 @@ function AppCopy() {
 
   let checkData2 = (old_courses, new_courses) => {
     let check = 0;
-    if (old_courses.length === new_courses.length) {
+    if (old_courses.length == new_courses.length) {
       for (var i = 0; i < old_courses.length; i++) {
-        if (old_courses[i] !== new_courses[i]) {
+        if (old_courses[i] != new_courses[i]) {
           check = 1;
           {
             break;
@@ -136,7 +145,7 @@ function AppCopy() {
     } else {
       check = 1;
     }
-    if (check === 1) {
+    if (check == 1) {
       getData2();
     }
   };
@@ -184,9 +193,9 @@ function AppCopy() {
 
   let checkData3 = (old_data, new_data, num) => {
     let check = 0;
-    if (old_data.length === new_data.length) {
+    if (old_data.length == new_data.length) {
       for (var i = 0; i < old_data.length; i++) {
-        if (old_data[i] !== new_data[i]) {
+        if (old_data[i] != new_data[i]) {
           check = 1;
           {
             break;
@@ -196,7 +205,7 @@ function AppCopy() {
     } else {
       check = 1;
     }
-    if (check === 1) {
+    if (check == 1) {
       getData3();
       getData4();
     }
@@ -247,9 +256,9 @@ function AppCopy() {
   /*
   let checkData4 = (old_data, new_data, num) => {
     let check = 0;
-    if (old_data.length === new_data.length) {
+    if (old_data.length == new_data.length) {
       for (var i = 0; i < old_data.length; i++) {
-        if (old_data[i] !== new_data[i]) {
+        if (old_data[i] != new_data[i]) {
           check = 1;
           {
             break;
@@ -259,7 +268,7 @@ function AppCopy() {
     } else {
       check = 1;
     }
-    if (check === 1) {
+    if (check == 1) {
       getData4();
     }
   };

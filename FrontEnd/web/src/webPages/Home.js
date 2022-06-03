@@ -22,24 +22,30 @@ function Home(props) {
   const [oldCourses, setOldCourses] = useState([]);
 
   // Retrieve user_id from token
-  const user_id = "1";
+  const user_data = localStorage.getItem("token");
+  const parsedData = JSON.parse(user_data);
+  const user_id = parsedData["user_id"];
+  const account_type = parsedData["account_type"];
 
-    // Retrieve user_id from token
-      // Retrieve user_id from token
-    const user_data = localStorage.getItem("token");
-    const parsedData = JSON.parse(user_data);
-    const user_id = parsedData['user_id'];
-    const account_type = parsedData["account_type"];
-  
-  
-    // Retrieve class_ids tied to user_id
-    const getData1 = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/user_class/list");
-        if (!response.ok) {
-          throw new Error(
-            "This is an HTTP error: The status is ${response.status}"
-          );
+  // Retrieve class_ids tied to user_id
+  const getData1 = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/user_class/list");
+      if (!response.ok) {
+        throw new Error(
+          "This is an HTTP error: The status is ${response.status}"
+        );
+      }
+      // Pull user/course data
+      let actualData = await response.json();
+      // Debugging
+
+      const length = parseInt(actualData.data.length);
+      // Parse course id data
+      let tempCourseIds = [];
+      for (var i = 0; i < length; i++) {
+        if (actualData.data[i].user_id == user_id) {
+          tempCourseIds.push(actualData.data[i].class_id);
         }
       }
 
@@ -139,6 +145,7 @@ function Home(props) {
     }
     return color;
   }
+
   const tiles = courses.map((data, id) => {
     return (
       <ClassTile
