@@ -58,7 +58,7 @@ function Announcements(props) {
                 
                 if (new String(courseId).valueOf() === new String(actualData.data[i].class_id).valueOf()) {
                     tempAnnouncementIds.push(actualData.data[i].announcement_id);
-                    console.log('taid', tempAnnouncementIds);
+                    
                 }
             }
             
@@ -163,45 +163,21 @@ function Announcements(props) {
         checkData2(announcements, oldAnnouncements);           
     }, [announcements]);
 
+    let itemList=[];
+    announcements.forEach((item,index)=>{
+        itemList.push( <Announcement
+          announcement={announcements[index]}
+          announcementTitle={announcementTitles[index]}
+          announcementDate={announcementDates[index]}
+          course={course}
+          courseId={courseId}
+        />);
+      });
 
   return (
     <div id="announcements">
       <div id="top_border"></div>
-      <Announcement
-        announcement={announcements[0]}
-        announcementTitle={announcementTitles[0]}
-        announcementDate={announcementDates[0]}
-        course={course}
-        courseId={courseId}
-      />
-      <Announcement
-        announcement={announcements[1]}
-        announcementTitle={announcementTitles[1]}
-        announcementDate={announcementDates[1]}
-        course={course}
-        courseId={courseId}
-      />
-      <Announcement
-        announcement={announcements[2]}
-        announcementTitle={announcementTitles[2]}
-        announcementDate={announcementDates[2]}
-        course={course}
-        courseId={courseId}
-      />
-      <Announcement
-        announcement={announcements[3]}
-        announcementTitle={announcementTitles[3]}
-        announcementDate={announcementDates[3]}
-        course={course}
-        courseId={courseId}
-      />
-      <Announcement
-        announcement={announcements[4]}
-        announcementTitle={announcementTitles[4]}
-        announcementDate={announcementDates[4]}
-        course={course}
-        courseId={courseId}
-      />
+      {itemList}
     </div>
   );
 }

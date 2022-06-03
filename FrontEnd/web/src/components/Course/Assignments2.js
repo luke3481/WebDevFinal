@@ -34,7 +34,10 @@ function Assignments2(props) {
     
 
     // Retrieve user_id from token
-    const user_id = '1';
+    const user_data = localStorage.getItem("token");
+    const parsedData = JSON.parse(user_data);
+    const user_id = parsedData['user_id'];
+    const account_type = parsedData["account_type"];
 
     // Retrieve assignment ids tied to user ids and class ids
     const getData1 = async () => {
@@ -53,7 +56,9 @@ function Assignments2(props) {
             // Parse assignment id data
             let tempAssignmentIds = [];
             for (var i = 0; i < length; i++) {
-                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
+                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()
+                || new String(actualData.data[i].teacher_id).valueOf() === new String(user_id).valueOf()
+                ) {
                     tempAssignmentIds.push(actualData.data[i].assignment_id)
                 }
             }
@@ -85,6 +90,7 @@ function Assignments2(props) {
         }
         if (check == 1) {
             getData1();
+            getData2();
         }
       };
     
@@ -104,8 +110,8 @@ function Assignments2(props) {
             }
             // Pull assignment data 
             let actualData = await response.json();  
-            
-            
+            console.log('assignments 2 getDAta2', actualData);
+            console.log('assigment 2 get data 2 assin Id', assignmentIds);
             
             const length = parseInt(actualData.data.length);
             
@@ -138,7 +144,7 @@ function Assignments2(props) {
             setLoading(false);
         }
     }
-    
+    /*
     let checkData2 = (old_data, new_data, num) => {
         let check = 0;
         
@@ -154,6 +160,7 @@ function Assignments2(props) {
           check = 1;
         }
         if (check == 1) {
+            console.log('Assignment 2 checkData2 getting data')
             getData2();
         }
       };
@@ -162,13 +169,17 @@ function Assignments2(props) {
         console.log('assignment names');
         checkData2(oldAssignmentNames, assignmentNames);
     }, [assignmentIds]);
+    */
+
+    let itemList=[];
+    assignmentNames.forEach((item,index)=>{
+        itemList.push( <Assignment assignmentName={assignmentNames[index]} assignmentDate={assignmentDates[index]} course={course} courseId={courseId}/>)
+    });
 
     return(
         <div id="assignments2">
             <div id="top_border"></div>
-            <Assignment assignmentName={assignmentNames[0]} assignmentDate={assignmentDates[0]} course={course} courseId={courseId}/>
-            <Assignment assignmentName={assignmentNames[1]} assignmentDate={assignmentDates[1]} course={course} courseId={courseId}/>
-            <Assignment assignmentName={assignmentNames[2]} assignmentDate={assignmentDates[2]} course={course} courseId={courseId}/>
+            {itemList}
         </div>
     );
 }
