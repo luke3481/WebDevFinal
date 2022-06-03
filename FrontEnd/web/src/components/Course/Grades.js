@@ -28,6 +28,7 @@ function Grades(props) {
     const [assignmentDates, setAssignmentDates] = useState([]);
     const [oldAssignmentDates, setOldAssignmentDates] = useState(['1']);
 
+    const [userIDs, setUserIDs] = useState([]);
     const [assignmentGrades, setAssignmentGrades] = useState([]);
 
     const [data, setData] = useState(null);
@@ -53,17 +54,22 @@ function Grades(props) {
                 );
             }
             // Pull user/assignment data 
-            let actualData = await response.json();  
+            let actualData = await response.json();
+            console.log('asd', actualData); 
             
             const length = parseInt(actualData.data.length);
             
             // Parse assignment id data
             let tempAssignmentIds = [];
+            let tempUserIds = [];
             let tempAssignmentGrades = [];
             for (var i = 0; i < length; i++) {
-                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()) {
+                if (new String(actualData.data[i].user_id).valueOf() === new String(user_id).valueOf()
+                    || new String(actualData.data[i].teacher_id).valueOf() === new String(user_id).valueOf()
+                ) {
                     tempAssignmentIds.push(actualData.data[i].assignment_id)
                     tempAssignmentGrades.push(actualData.data[i]['points'])
+                    tempUserIds.push(actualData.data[i].user_id)
                 }
             }
 
@@ -71,7 +77,9 @@ function Grades(props) {
             setAssignmentIds(tempAssignmentIds);
 
             setAssignmentGrades(tempAssignmentGrades);
-
+            setUserIDs(tempUserIds);
+            
+            console.log('assdfefew', assignmentIds)
             console.log('get Data2 temp assignment poihnts', tempAssignmentGrades);
             
             setError(null);
@@ -118,27 +126,28 @@ function Grades(props) {
             }
             // Pull assignment data 
             let actualData = await response.json();  
+            console.log('ad222', actualData)
             
             // Debugging - Data successfully retrieved but empty
             
             const length = parseInt(actualData.data.length);
-            
+            console.log('leeengg', length)
             // Parse assignment data
             let tempAssignmentNames = [];
             let tempAssignmentDates = [];
             
 
             for (var i = 0; i < length; i++) {
-                if (assignmentIds.includes(actualData.data[i]['assignment_id'])) {
+                
+                let j = assignmentIds[i]
+                tempAssignmentNames.push(actualData.data[j]['assignment_name'])
+                tempAssignmentDates.push(actualData.data[j]['due_date'])        
                     
-                    tempAssignmentNames.push(actualData.data[i]['assignment_name'])
-                    tempAssignmentDates.push(actualData.data[i]['due_date'])        
-                    
-                }
+                
             }
             
             
-
+            console.log('gd2', tempAssignmentNames)
             setOldAssignmentNames(assignmentNames);
             setAssignmentNames(tempAssignmentNames);
 
@@ -157,12 +166,17 @@ function Grades(props) {
         }
     }
 
+
+
+    let itemList=[];
+    assignmentNames.forEach((item,index)=>{
+        itemList.push( <Grade user={userIDs[index]} assignmentName={assignmentNames[index]} assignmentGrade={assignmentGrades[index]} courseId={courseId} course={course} />)
+    });
+
     return(
         <div id="grades">
             <div id="top_border"></div>
-            <Grade assignmentName={assignmentNames[0]} assignmentGrade={assignmentGrades[0]} courseId={courseId} course={course} />
-            <Grade assignmentName={assignmentNames[1]} assignmentGrade={assignmentGrades[1]} courseId={courseId} course={course} />
-            <Grade assignmentName={assignmentNames[2]} assignmentGrade={assignmentGrades[2]} courseId={courseId} course={course} />
+            {itemList}
         </div>
     );
 }

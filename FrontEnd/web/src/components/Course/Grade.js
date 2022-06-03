@@ -14,6 +14,7 @@ function Grade(props) {
 
     return (
         <div id="grade">
+            <p>Student:{props.user}</p>
             <a style={{fontWeight: "bold"}}>{props.assignmentName}</a>
             <a> </a>
             <a>{props.assignmentGrade}</a>
